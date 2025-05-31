@@ -1,0 +1,36 @@
+{
+  "name": "pi_nativegames",
+  "version": "1.0.0",
+  "description": "Projeto Integrador para o curso Técnico em Informática do Senac Salto, SP.",
+  "keywords": [
+    "HTML",
+    "CSS",
+    "Bootstrap",
+    "Javascript",
+    "NodeJS",
+    "Express",
+    "PhaserJS",
+    "Docker",
+    "MySQL"
+  ],
+  "homepage": "https://github.com/MurFerDev/Projeto-Native-Games#readme",
+  "bugs": {
+    "url": "https://github.com/MurFerDev/Projeto-Native-Games/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MurFerDev/Projeto-Native-Games.git"
+  },
+  "license": "ISC",
+  "author": "Murilo Ferreira Santos, Sara Vanessa Santos Paiva",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

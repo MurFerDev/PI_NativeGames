@@ -1,0 +1,10 @@
+node_modules/
+dist/
+bower_components/
+build/Release/
+package-lock.json
+logs
+.env
+.npm
+.eslintcache
+.cache/
