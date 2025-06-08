@@ -9,9 +9,21 @@
     "Javascript",
     "NodeJS",
     "Express",
+    "Handlebars",
+    "Express-Handlebars",
     "PhaserJS",
     "Docker",
-    "MySQL"
+    "MySQL",
+    "Games",
+    "Native Games",
+    "Projeto Native Games",
+    "Projeto Integrador",
+    "Senac Salto",
+    "Murilo Ferreira Santos",
+    "Murilo Ferreira",
+    "MurFerDev",
+    "Sara Vanessa Santos Paiva",
+    "Sara Vanessa"
   ],
   "homepage": "https://github.com/MurFerDev/Projeto-Native-Games#readme",
   "bugs": {
@@ -27,10 +39,13 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "nodem app.js",
     "dev": "nodemon app.js"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "bootstrap": "^5.3.6",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "mysql2": "^3.14.1"
   }
 }
