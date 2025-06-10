@@ -13,8 +13,8 @@ app.set('views', './views');
 const conexao = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '@MySQL_$3n4c#',
-    database: 'db_native_games'
+    password: 'senac',
+    database: 'native_games_DB'
 })
 
 app.get('/usuarios', (req, res) => {;
@@ -25,7 +25,7 @@ app.get('/usuarios', (req, res) => {;
             res.status(500).send('Erro ao consultar usuarios');
             return;
         }
-        res.render('tb_usuarios', {usuario: usuarios_qs});
+        res.render('usuarios', {usuario: usuarios_qs});
     });
 }
 );
