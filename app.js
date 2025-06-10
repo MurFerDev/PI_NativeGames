@@ -25,7 +25,7 @@ app.get('/usuarios', (req, res) => {;
             res.status(500).send('Erro ao consultar usuarios');
             return;
         }
-        res.render('usuarios', {usuario: usuarios_qs});
+        res.render('usuarios', {usuarios: usuarios_qs});
     });
 }
 );

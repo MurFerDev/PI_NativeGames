@@ -85,10 +85,7 @@ CREATE TABLE IF NOT EXISTS tb_log_acesso_usuarios (
   data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE SET NULL
 );
-
-/* Criando uma Tabela de Log de registro de ações dos usuários.
-Essa tabela registra ações dentro do sistema (edição, jogo favorito…) */
-CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
+uario, email_usuario, CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
   ID_log_acao_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT NOT NULL,
   acoes TEXT NOT NULL,
