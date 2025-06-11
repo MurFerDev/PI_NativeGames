@@ -17,6 +17,10 @@ const conexao = mysql.createConnection({
     database: 'native_games_DB'
 })
 
+app.get('/', (req, res) => {;
+    res.render('index')
+});
+
 app.get('/usuarios', (req, res) => {;
     let sql = 'SELECT * FROM tb_usuarios';
     conexao.query(sql, function(erro, usuarios_qs) {
