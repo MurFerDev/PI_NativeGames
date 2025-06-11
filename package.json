@@ -12,7 +12,6 @@
     "Handlebars",
     "Express-Handlebars",
     "PhaserJS",
-    "Docker",
     "MySQL",
     "Games",
     "Native Games",
@@ -47,6 +46,7 @@
     "bootstrap": "^5.3.6",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
-    "mysql2": "^3.14.1"
+    "mysql2": "^3.14.1",
+    "three": "^0.177.0"
   }
 }
