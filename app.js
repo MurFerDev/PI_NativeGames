@@ -32,7 +32,7 @@ conexao.connect(function(erro) {
 
 // Rota para consultar usuários
 app.get('/', (req, res) => {
-    res.render('index', {titulo: 'Teste de Renderização'});
+    res.render('index', {titulo: 'Página inicial'});
 });
 
 // Rota para a página "Login"
@@ -66,6 +66,10 @@ app.get('/usuarios', (req, res) => {;
         }
         res.render('usuarios', {usuarios: usuarios_qs});
     });
+});
+
+app.get('/adugo', (req, res) => {
+    res.render('adugo', {titulo: 'Adugo (Brasil)'});
 });
 
 app.listen(8080);
