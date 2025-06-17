@@ -32,7 +32,8 @@ criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
 atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-/* ADIÇÃO DE USUÁRIOS PARA TESTES */DBINSERT INTO tb_usuarios(nome_usuario, email_usuario, senha_usuario, telefone_usuario, tipo_usuario)
+/* ADIÇÃO DE USUÁRIOS PARA TESTES */
+INSERT INTO tb_usuarios(nome_usuario, email_usuario, senha_usuario, telefone_usuario, tipo_usuario)
 VALUES ('Sara Paiva', 'vsara9951@gmail.com', 'usuariohoots', '11911045825', 'admin');
 INSERT INTO tb_usuarios(nome_usuario, email_usuario, senha_usuario, telefone_usuario, tipo_usuario)
 VALUES ('Murilo Ferreira', 'murferdev@gmail.com', 'Us3r@dm1n#', '11969677747', 'admin');
@@ -85,7 +86,10 @@ CREATE TABLE IF NOT EXISTS tb_log_acesso_usuarios (
   data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE SET NULL
 );
-uario, email_usuario, CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
+
+/* Criando uma Tabela de Log de registro de ações dos usuários.
+Essa tabela registra ações dentro do sistema (edição, jogo favorito…) */
+CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
   ID_log_acao_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT NOT NULL,
   acoes TEXT NOT NULL,
