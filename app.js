@@ -17,8 +17,8 @@ app.set('views', './views');
 const conexao = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '@MySQL_$3n4c#',
-    database: 'native_games_db'
+    password: 'senac',
+    database: 'native_games_DB'
 })
 
 // Conexão com o banco de dados

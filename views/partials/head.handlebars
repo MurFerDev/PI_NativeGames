@@ -1,4 +1,3 @@
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Language" content="pt-BR">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1, firefox=1, safari=1">
@@ -9,4 +8,115 @@
     <meta name="author" content="Murilo Ferreira Santos, Sara Vanessa Santos Paiva">
     <title>Native Games</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-</head>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+
+    <script src="//cdn.jsdelivr.net/npm/globe.gl"></script>
+    <!--<script src="../../dist/globe.gl.js"></script>-->
+    <script type="module"> // Importando a biblioteca Globe.gl
+    import * as THREE from 'https://esm.sh/three';
+
+    const markerSvg = `<svg viewBox="-4 0 36 36"><path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path><circle fill="black" cx="14" cy="14" r="7"></circle></svg>`; // Marcador SVG das posições locais dos jogos
+
+    // Instâncias do Globo
+    const locals = [{
+        lat: -10.3333,
+        lng: -53.2,
+        name: 'Adugo (Brasil)',
+        link: '/adugo',
+        size: 50,
+        color: 'white'
+    },
+    {
+        lat: 35.8617,
+        lng: 104.1954,
+        name: 'Dou Shou Qi (China)',
+        link: '/doushouqi',
+        size: 50,
+        color: 'white'
+    },
+    {
+        lat: 26.8206,
+        lng: 30.8025,
+        name: 'Senet (Egito)',
+        link: '/senet',
+        size: 50,
+        color: 'white'
+    },
+    {
+        lat: 33.2232,
+        lng: 43.6793,
+        name: 'Jogo Real de Ur (Mesopotâmia)',
+        link: '/jogodeur',
+        size: 50,
+        color: 'white'
+    },
+    {
+        lat: 28.2350,
+        lng: 84.0732,
+        name: 'Bagha Chall (Nepal)',
+        link: '/baghachall',
+        size: 50,
+        color: 'white'
+    },
+    {
+        lat: -1.2921,
+        lng: 36.8219,
+        name: 'Mancala (África)',
+        link: '/mancala',
+        size: 50,
+        color: 'white'
+    }];
+
+    // Criação do globo
+    const world = new Globe(document.getElementById('globeViz'), { animateIn: false })
+        .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
+        .bumpImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png')
+        .htmlElementsData(locals) // Dados dos locais
+        .pointOfView({ lat: -10, lng: -50, altitude: 2 }, 0) // Posição inicial do globo
+        .htmlElement(locals => {
+            const el = document.createElement('div');
+            el.innerHTML = markerSvg;
+            el.style.color = locals.color;
+            el.style.width = `${locals.size}px`;
+            el.style.transition = 'opacity 250ms';
+
+            el.style['pointer-events'] = 'auto';
+            el.style.cursor = 'pointer';
+            //el.onclick = () => console.info(d);
+            el.onclick = () => window.location.href = locals.link;
+            return el;
+        })
+        .htmlElementVisibilityModifier((el, isVisible) => el.style.opacity = isVisible ? 1 : 0);;
+
+    // Configurações de comandos do globo
+    world.controls().autoRotate = true;
+    world.controls().autoRotateSpeed = 0.5;
+    world.controls().enableZoom = false;
+    world.controls().enableRotate = true;
+
+    // Adição e configuração das nuvens no globo
+    const CLOUDS_IMG_URL = './clouds.png'; // from https://github.com/turban/webgl-earth
+    const CLOUDS_ALT = 0.004;
+    const CLOUDS_ROTATION_SPEED = -0.006; // deg/frame
+
+    // Carrega a textura das nuvens
+    new THREE.TextureLoader().load(CLOUDS_IMG_URL, cloudsTexture => { 
+        const clouds = new THREE.Mesh(
+            new THREE.SphereGeometry(world.getGlobeRadius() * (1 + CLOUDS_ALT), 75, 75),
+            new THREE.MeshPhongMaterial({ map: cloudsTexture, transparent: true })
+        );
+        world.scene().add(clouds);
+
+        // Função para rotacionar as nuvens
+        (function rotateClouds() {
+            clouds.rotation.y += CLOUDS_ROTATION_SPEED * Math.PI / 180;
+            world.scene().requestRender();
+            requestAnimationFrame(rotateClouds);
+        })();
+    });
+</script>
+
