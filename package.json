@@ -45,10 +45,12 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "bootstrap": "^5.3.6",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
+    "express-session": "^1.18.1",
     "mysql2": "^3.14.1",
     "three": "^0.177.0"
   },
