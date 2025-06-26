@@ -6,13 +6,12 @@ const {engine} = require ('express-handlebars');
 const mysql = require('mysql2');
 
 // Configuração do middleware para servir arquivos estáticos
-app.use(express.static(__dirname + '/static')); // Pasta para arquivos estáticos
+app.use('/static', express.static(__dirname + '/static')); // Pasta para arquivos estáticos
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')); // Pasta para o Bootstrap
 // Configuração do Handlebars como motor de visualização
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
-
 // Configuração da conexão com o banco de dados MySQL
 const conexao = mysql.createConnection({
     host: 'localhost',
