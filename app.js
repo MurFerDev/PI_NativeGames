@@ -6,7 +6,7 @@ const {engine} = require ('express-handlebars');
 const mysql = require('mysql2');
 
 // Configuração do middleware para servir arquivos estáticos
-app.use(express.static(__dirname + '/static')); // Pasta para arquivos estáticos
+app.use('/static', express.static(__dirname + '/static')); // Pasta para arquivos estáticos
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')); // Pasta para o Bootstrap
 // Configuração do Handlebars como motor de visualização
 app.engine('handlebars', engine());
@@ -70,6 +70,10 @@ app.get('/usuarios', (req, res) => {;
 
 app.get('/adugo', (req, res) => {
     res.render('adugo', {titulo: 'Adugo (Brasil)'});
+});
+
+app.get('/hub', (req, res) => {
+    res.render('hub', {titulo: 'Página do usuário'});
 });
 
 app.listen(8080);
