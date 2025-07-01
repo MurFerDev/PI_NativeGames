@@ -7,7 +7,7 @@ const sql = fs.readFileSync(path.join(__dirname, 'setup.sql'), 'utf8');
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'senac', 
+  password: '@MySQL_$3n4c#', 
   multipleStatements: true 
 });
 
