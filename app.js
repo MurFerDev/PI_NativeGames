@@ -2,14 +2,15 @@
 const express = require('express');
 const app = express();
 const {engine} = require ('express-handlebars');
-
 const mysql = require('mysql2');
+const path = require('path');
 
 // Configuração do middleware para servir arquivos estáticos
 app.use(express.static(__dirname + '/static')); // Pasta para arquivos estáticos
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')); // Pasta para o Bootstrap
+app.use(express.urlencoded({ extended: true })); // Middleware para analisar dados de formulários
 // Configuração do Handlebars como motor de visualização
-app.engine('handlebars', engine());
+app.engine('handlebars', engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 
@@ -17,7 +18,7 @@ app.set('views', './views');
 const conexao = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'senac',
+    password: '@MySQL_$3n4c#', // Senha do MySQL
     database: 'native_games_DB'
 })
 
@@ -70,6 +71,23 @@ app.get('/usuarios', (req, res) => {;
 
 app.get('/adugo', (req, res) => {
     res.render('adugo', {titulo: 'Adugo (Brasil)'});
+});
+
+app.get('/dashboard', (req, res) => {
+    const sql = `
+        SELECT j.nome_jogo, COUNT(l.id_log) AS total
+        FROM tb_log_acesso l
+        JOIN tb_jogo j ON j.id_jogo = l.fk_jogo
+        GROUP BY j.nome_jogo
+    `;
+    conexao.query(sql, function(erro, resultados) {
+        if (erro) {
+            console.error('Erro ao consultar dashboard:', erro);
+            res.status(500).send('Erro ao consultar dashboard');
+            return;
+        }
+        res.render('dashboard', {titulo: 'Dashboard', dados: resultados});
+    });
 });
 
 app.listen(8080);

@@ -1,0 +1,58 @@
+<div id="verificacao-acesso" class="d-flex flex-column justify-content-center align-items-center vh-100 text-center">
+    <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+        <span class="sr-only">Carregando...</span>
+    </div>
+    <p class="mt-4 h5 font-weight-medium">Verificando permissões de acesso...</p>
+</div>
+
+<div id="conteudo-principal" style="display: none;">
+    <div class="container py-4">
+        <h1 class="mb-4">🛡️ Painel Administrativo - Logs</h1>
+
+        <ul class="nav nav-tabs" id="tabLogs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="log-acessos-tab" data-bs-toggle="tab" data-bs-target="#log-acessos"
+                    type="button" role="tab">Acessos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="log-acoes-tab" data-bs-toggle="tab" data-bs-target="#log-acoes"
+                    type="button" role="tab">Ações de Usuário</button>
+            </li>
+        </ul>
+
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="log-acessos" role="tabpanel">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuário</th>
+                            <th>Email Tentado</th>
+                            <th>Status</th>
+                            <th>IP</th>
+                            <th>Navegador</th>
+                            <th>Data/Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaAcessos"></tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane fade" id="log-acoes" role="tabpanel">
+                <table class="table table-bordered table-striped">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuário</th>
+                            <th>Ação</th>
+                            <th>Rota</th>
+                            <th>Método</th>
+                            <th>Data/Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaAcoes"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

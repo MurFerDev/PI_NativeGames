@@ -34,7 +34,6 @@ atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 /* ADIÇÃO DE USUÁRIOS PARA TESTES */
-SELECT * FROM tb_usuarios;
 INSERT INTO tb_usuarios(nome_usuario, email_usuario, senha_usuario, telefone_usuario, tipo_usuario)
 VALUES ('Sara Paiva', 'vsara9951@gmail.com', 'usuariohoots', '11911045825', 'admin');
 INSERT INTO tb_usuarios(nome_usuario, email_usuario, senha_usuario, telefone_usuario, tipo_usuario)

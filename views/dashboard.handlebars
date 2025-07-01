@@ -1,0 +1,86 @@
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-dark border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading text-white font-weight-bold">🎮 Native Games</div>
+        <div class="list-group list-group-flush">
+            <a href="/dashboard"
+                class="list-group-item list-group-item-action bg-dark text-white active">Dashboard</a>
+            <a href="admin/logs" class="list-group-item list-group-item-action bg-dark text-white">Logs</a>
+            <a href="cadastro-jogo" class="list-group-item list-group-item-action bg-dark text-white">Cadastrar
+                Jogo</a>
+            <a href="admin/usuarios" class="list-group-item list-group-item-action bg-dark text-white">Usuários</a>
+            <a href="/" class="list-group-item list-group-item-action bg-dark text-warning font-weight-bold"
+                id="logoutBtn">Sair</a>
+        </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div id="page-content-wrapper" class="w-100">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <span class="navbar-brand">Painel Administrativo</span>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle font-weight-bold text-dark" href="#" id="adminMenu" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="usuarioNomeDropdown">Admin</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
+                        <a class="dropdown-item" href="/usuario/editar">Editar Perfil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-danger" href="#" id="logoutBtn">Sair</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid py-4">
+            <h1 class="mt-4">"Olá, {{nome}}"</h1>
+            <p class="lead">Use o menu lateral para acessar as funcionalidades administrativas da plataforma.</p>
+            <h2 class="mb-4">📊 Visão Geral da Plataforma</h2>
+
+            <div class="row text-center">
+                <div class="col-md-3 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Jogos</h5>
+                            <p class="card-text display-4" id="totalJogos">--</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Usuários</h5>
+                            <p class="card-text display-4" id="totalUsuarios">--</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Acessos</h5>
+                            <p class="card-text display-4" id="totalAcessos">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mt-5">🎮 Acessos por Jogo</h4>
+            <canvas id="graficoJogos" height="100"></canvas>
+
+            <h4 class="mt-5">🕒 Horários de Acesso</h4>
+            <canvas id="graficoHoras" height="100"></canvas>
+
+            <h4 class="mt-5">🌍 Localidades</h4>
+            <canvas id="graficoLocalidades" height="100"></canvas>
+
+            <h4 class="mt-5">🖥️ Navegadores / Dispositivos</h4>
+            <canvas id="graficoDispositivos" height="100"></canvas>
+        </div>
+    </div>
+</div>
+
+<footer>
+    
+</footer>
