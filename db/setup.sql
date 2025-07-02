@@ -28,6 +28,10 @@ apelido_usuario VARCHAR(20),
 email_usuario VARCHAR(100) NOT NULL,
 senha_usuario VARCHAR(100) NOT NULL,
 telefone_usuario VARCHAR(20),
+data_nascimento DATE,
+genero_usuario ENUM('masculino', 'feminino', 'outro', 'não definido') DEFAULT 'não definido',
+status_usuario ENUM('ativo', 'inativo', 'bloqueado', 'banido') NOT NULL DEFAULT 'ativo',
+ultimo_acesso DATETIME DEFAULT CURRENT_TIMESTAMP,
 tipo_usuario ENUM('comum', 'registrado', 'premium', 'parceiro', 'gametester', 'moderador', 'dev', 'admin') NOT NULL DEFAULT 'comum',
 criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
 atualizado_em DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -80,6 +84,7 @@ Essa tabela registra cada tentativa de login (sucesso ou falha) */
 CREATE TABLE IF NOT EXISTS tb_log_acesso_usuarios (
   ID_log_acesso_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT,
+  fk_jogo INT,
   email_tentado VARCHAR(255),
   status_acesso ENUM('successo', 'falha') NOT NULL,
   ip_origem VARCHAR(45),
@@ -93,8 +98,10 @@ Essa tabela registra ações dentro do sistema (edição, jogo favorito…) */
 CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
   ID_log_acao_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT NOT NULL,
-  acoes TEXT NOT NULL,
-  rotas_afetadas VARCHAR(255),
+  fj_jogo INT,
+  acao ENUM('login', 'logout', 'cadastro', 'edicao_perfil', 'adicionar_favorito', 'remover_favorito', 'jogar', 'avaliar_jogo', 'reportar_bug', 'alterar_senha') NOT NULL,
+  descricao_acao TEXT,
+  rota_afetada VARCHAR(255),
   metodo_http VARCHAR(10),
   data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE CASCADE

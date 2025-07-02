@@ -87,8 +87,6 @@ document.querySelector('#logoutBtn').addEventListener('click', logout);
 
 carregarDashboard();
 
-
-
 // Variáveis para a Dashboard do painel administrativo
 const express = require('express');
 const router = express.Router();
@@ -99,19 +97,22 @@ const verificarAdmin = require('../middleware/adminMiddleware');
 // Dashboard do painel administrativo
 router.get('/dashboard', autenticarToken, verificarAdmin, (req, res) => {
     const consultas = {
-        totalJogos: 'SELECT COUNT(*) AS total FROM tb_jogo',
-        totalUsuarios: 'SELECT COUNT(*) AS total FROM tb_usuario',
-        totalAcessos: 'SELECT COUNT(*) AS total FROM tb_log_acesso',
+        totalJogos: 'SELECT COUNT(*) AS total FROM tb_jogos',
+        totalUsuarios: 'SELECT COUNT(*) AS total FROM tb_usuarios',
+        totalAcessos: 'SELECT COUNT(*) AS total FROM tb_log_acesso_usuarios',
         horarios: `
       SELECT HOUR(data_hora) AS hora, COUNT(*) AS total
-      FROM tb_log_acesso
+      FROM tb_log_acesso_ususarios
       GROUP BY HOUR(data_hora)
     `,
         locais: `
       SELECT SUBSTRING_INDEX(ip_origem, '.', 1) AS faixa_ip, COUNT(*) AS total
-      FROM tb_log_acesso
+      FROM tb_log_acesso_usuarios
       GROUP BY faixa_ip
+        ORDER BY total DESC
       LIMIT 6
+    `,
+        acessosJogo: `
     `,
         navegadores: `
       SELECT
@@ -123,8 +124,10 @@ router.get('/dashboard', autenticarToken, verificarAdmin, (req, res) => {
           ELSE 'Outros'
         END AS navegador,
         COUNT(*) AS total
-      FROM tb_log_acesso
+      FROM tb_log_acesso_usuarios
+      WHERE navegador IS NOT NULL
       GROUP BY navegador
+        ORDER BY total DESC
     `
     };
 
