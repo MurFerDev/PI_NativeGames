@@ -1,0 +1,28 @@
+<h1 class="text-center my-4">ADM - Detalhes da Conta do Usuário</h1>
+
+<div class="container py-5">
+
+    <div class="card mx-auto" style="max-width: 800px;">
+        <div class="card-body text-center">
+            <img src="{{fotoPerfil}}" alt="Foto de Perfil" class="rounded-circle mb-3" width="120" height="120"
+                style="object-fit: cover;" />
+            <h3 class="card-title mb-3">{{this.nome_usuario}}</h3>
+            <p class="card-text">ID: {{this.id_usuario}}</p>
+            <p class="card-text">Email: {{this.email_usuario}}</p>
+            <p class="card-text">Telefone: {{this.telefone_usuario}}</p>
+            <p class="card-text">Apelido: {{this.apelido_usuario}}</p>
+            <p class="card-text">Data de Nascimento: {{this.data_nascimento}}</p>
+            <p class="card-text">Gênero: {{this.genero_usuario}}</p>
+            <p class="card-text">Status: {{this.status_usuario}}</p>
+            <p class="card-text">Tipo de Usuário: {{this.tipo_usuario}}</p>
+            <p class="card-text">Data de Cadastro: {{this.data_cadastro}}</p>
+            <p class="card-text">Último Acesso: {{this.ultimo_acesso}}</p>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button class="btn btn-primary mb-2"
+            onclick="window.location.href='/admin/usuarios/editar/{{this.ID_usuario}}'">Editar Usuário</button>
+        <button class="btn btn-secondary" onclick="window.location.href='/admin/usuarios'">Voltar à Lista</button>
+    </div>
+</div>

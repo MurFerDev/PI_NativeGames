@@ -24,7 +24,7 @@ const db = require('/server/database/db.js');
 
 function registrarAcao(usuarioId, acao, rota, metodo) {
   const sql = `
-    INSERT INTO tb_log_acoes_usuarios (fk_usuario, acoes, rotas_afetadas, metodo_http)
+    INSERT INTO tb_log_acoes_usuarios (fk_usuario, acao, rota_afetada, metodo_http)
     VALUES (?, ?, ?, ?)
   `;
   db.query(sql, [usuarioId, acao, rota, metodo], (err) => {
@@ -62,8 +62,8 @@ async function carregarLogs() {
       tr.innerHTML = `
         <td>${log.ID_log_acao_de_usuario}</td>
         <td>${log.fk_usuario}</td>
-        <td>${log.acoes}</td>
-        <td>${log.rotas_afetadas}</td>
+        <td>${log.acao}</td>
+        <td>${log.rota_afetada}</td>
         <td>${log.metodo_http}</td>
         <td>${new Date(log.data_hora).toLocaleString()}</td>
       `;
