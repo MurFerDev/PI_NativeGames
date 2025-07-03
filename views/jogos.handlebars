@@ -1,0 +1,18 @@
+<h1>Conheça nossos jogos</h1>
+
+{{#if jogos.length}}
+    <ul class="list-group">
+        {{#each jogos}}
+            <li class="list-group-item">
+                <a href="" id="link-do-jogo"><h5>{{this.nome_jogo}}</h5></a>
+                <img src="../static/images/adugo.png" alt="Adugo - O Jogo da Onça" class="img-fluid mb-2" style="max-width: 200px; height: auto;">
+                <p><strong>Gênero:</strong> {{this.genero}}</p>
+                <p><strong>Plataforma:</strong> {{this.plataforma}}</p>
+                <p><strong>Lançamento:</strong> {{this.data_lancamento}}</p>
+                <a href="/jogos/detalhes/{{this.ID_jogo}}" class="btn btn-primary">Detalhes</a>
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p class="text-warning">Nenhum jogo encontrado.</p>
+{{/if}}

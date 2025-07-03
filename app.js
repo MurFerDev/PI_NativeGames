@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // Importação de módulos necessários
 const express = require('express');
 const app = express();
@@ -33,23 +35,6 @@ app.engine('handlebars', engine({ defaultLayout: 'main',
 
 app.set('view engine', 'handlebars');
 app.set('views', './views');
-
-// Configuração da conexão com o banco de dados MySQL
-const conexao = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '@MySQL_$3n4c#', // Senha do MySQL
-    database: 'native_games_DB'
-})
-
-// Conexão com o banco de dados
-conexao.connect(function(erro) {
-    if (erro) {
-        console.error('Erro ao conectar ao banco de dados:', erro);
-        return;
-    }
-    console.log('Conexão com o banco de dados estabelecida com sucesso!');
-});
 
 // Rota para consultar usuários
 app.get('/', (req, res) => {
@@ -203,20 +188,31 @@ app.post('/admin/usuarios/excluir/:id', (req, res) => {
     });
 });
 
-// Rota para buscar usuários
-app.get('/admin/usuarios/buscar', (req, res) => {
-    const { termo_busca } = req.body;
+// Rota para exibir o formulário depesquisa de usuarios
+app.get('/admin/usuarios/pesquisar-form', (req, res) => {
+    res.render('pesquisar'); // esta é a página com o <form>
+});
+
+// Rota para processar a pesquisa
+app.get('/admin/usuarios/pesquisar', (req, res) => {
+    const termo = req.query.pesquisar_usuario;
+    console.log('Termo recebido para pesquisa:', termo);
+
+    if (!termo) {
+        return res.redirect('/admin/usuarios/pesquisar-form');
+    }
+
     const sql = `
         SELECT * FROM tb_usuarios 
         WHERE nome_usuario LIKE ? OR email_usuario LIKE ? OR apelido_usuario LIKE ?
     `;
-    conexao.query(sql, [`%${termo_busca}%`, `%${termo_busca}%`, `%${termo_busca}%`], function(erro, busca_qs) {
+    const termoPesquisa = `%${termo}%`;
+    conexao.query(sql, [termoPesquisa, termoPesquisa, termoPesquisa], function(erro, usuarios_qs) {
         if (erro) {
-            console.error('Erro ao buscar usuários:', erro);
-            res.status(500).send('Erro ao buscar usuários');
-            return;
+            console.error('Erro ao pesquisar usuários:', erro);
+            return res.status(500).send('Erro ao pesquisar usuários');
         }
-        res.render('usuarios', {titulo: 'Usuários Encontrados', usuarios: busca_qs});
+        res.render('pesquisar', { usuarios: usuarios_qs });
     });
 });
 
@@ -239,18 +235,42 @@ app.get('/admin/logs', (req, res) => {
     });
 });
 
-
 // Rota para consultar jogos
-app.get('/admin/jogos', (req, res) => { 
+app.get('/jogos', (req, res) => { 
     const sql = 'SELECT * FROM tb_jogos';
     conexao.query(sql, function(erro, jogos_qs) {
         if (erro) {
             console.error('Erro ao consultar jogos:', erro);
             res.status(500).send('Erro ao consultar jogos');
             return;
-        }
+        } 
         res.render('jogos', {jogos: jogos_qs});
     });
 });
 
-app.listen(8080);
+// Rota para efetuar logout
+app.post('/logout', (req, res) => {
+    const sql = 'UPDATE tb_usuarios SET status_usuario = "offline" WHERE ID_usuario = ?';
+    const id_usuario = req.body.id_usuario; // Supondo que o ID do usuário esteja sendo enviado no corpo da requisição
+    conexao.query(sql, [id_usuario], function(erro) {
+        if (erro) {
+            console.error('Erro ao atualizar status do usuário:', erro);
+            res.status(500).send('Erro ao atualizar status do usuário');
+            return;
+        }
+        console.log('Status do usuário atualizado para offline com sucesso!');
+    });
+    conexao.end(function(erro) {
+        if (erro) {
+            console.error('Erro ao encerrar a conexão com o banco de dados:', erro);
+            res.status(500).send('Erro ao encerrar a conexão com o banco de dados');
+            return;
+        } else {
+            console.log('Conexão com o banco de dados encerrada com sucesso!');
+            console.log('Usuário deslogado');
+        }
+        res.redirect('/'); // Redireciona para a página inicial após o logout
+    });
+});
+
+app.listen(8080); // Inicia o servidor na porta 8080

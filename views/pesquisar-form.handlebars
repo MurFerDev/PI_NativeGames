@@ -1,0 +1,25 @@
+<h1>Pesquisar Usuários</h1>
+
+<form action="/admin/usuarios/pesquisar" method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="pesquisar_usuario" placeholder="Digite o termo que deseja pesquisar" required>
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+    </div>
+</form>
+{{! Exibir resultados da pesquisa, se houver }}
+{{#if usuarios.length}}
+    <h2>Resultados da Pesquisa</h2>
+    <ul class="list-group">
+        {{#each usuarios}}
+            <li class="list-group-item">
+                <strong>ID:</strong> {{this.ID_usuario}} - 
+                <strong>Nome:</strong> {{this.nome_usuario}} - 
+                <strong>Email:</strong> {{this.email_usuario}} - 
+                <strong>Tipo:</strong> {{this.tipo_usuario}}
+                <a href="/admin/usuarios/detalhes/{{this.ID_usuario}}" class="btn btn-primary btn-sm float-end">Detalhes</a>
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p class="text-warning">Nenhum usuário encontrado com os critérios de pesquisa.</p>
+{{/if}}

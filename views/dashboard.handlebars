@@ -1,8 +1,7 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-dark border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading text-white font-weight-bold">🎮 Native Games</div>
-        <div class="list-group list-group-flush">
+    <div class="bg-dark border-right" id="sidebar-wrapper" style="width: 20%;">
+        <div class="list-group list-group-flush" id="sidebar-menu" nome="sidebar-menu;">
             <a href="/dashboard"
                 class="list-group-item list-group-item-action bg-dark text-white active">Dashboard</a>
             <a href="admin/logs" class="list-group-item list-group-item-action bg-dark text-white">Logs</a>
@@ -19,23 +18,22 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <span class="navbar-brand">Painel Administrativo</span>
 
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle font-weight-bold text-dark" href="#" id="adminMenu" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span id="usuarioNomeDropdown">Admin</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminMenu">
-                        <a class="dropdown-item" href="/usuario/editar">Editar Perfil</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger" href="#" id="logoutBtn">Sair</a>
-                    </div>
-                </li>
-            </ul>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Menu</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Minha conta</a></li>
+                    <li><a class="dropdown-item" href="#">Configurações</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sair</a></li>
+                </ul>
+            </d>
         </nav>
 
         <div class="container-fluid py-4">
-            <h1 class="mt-4">"Olá, {{nome}}"</h1>
+            <h1 class="mt-4">"Olá, {{this.nome_usuario}}"</h1>
             <p class="lead">Use o menu lateral para acessar as funcionalidades administrativas da plataforma.</p>
             <h2 class="mb-4">📊 Visão Geral da Plataforma</h2>
 
