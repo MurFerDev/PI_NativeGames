@@ -2,13 +2,18 @@
 
 {{#if usuarios.length}}
 {{#each usuarios}}
-<div class="card-body">
-    <h5 class="card-title">ID de usuário: {{this.ID_usuario}}</h5>
-    <p class="card-text"><strong>Nome:</strong> {{this.nome_usuario}}</p>
+
+<div class="card" style="width: 18rem; margin-bottom: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 10px;">
+  <img src="/static/images/user-default-img.png" class="card-img-top" alt="Imagem do Usuario" style="width: 100%; height: 50px; object-fit: cover;">
+  <div class="card-body">
+    <h5 class="card-title">Nome: </strong>{{this.nome_usuario}}</h5>
+    <p class="card-text"><strong>ID: </strong>{{this.ID_usuario}}</p>
     <p class="card-text"><strong>Email:</strong> {{this.email_usuario}}</p>
     <p class="card-text"><strong>Tipo:</strong> {{this.tipo_usuario}}</p>
+    <a href="/admin/usuarios/detalhes/{{this.ID_usuario}}" class="btn btn-primary">Visualizar</a>
+    <a href="/admin/usuarios/detalhes/{{this.ID_usuario}}/editar" class="btn btn-primary">Editar</a>
+  </div>
 </div>
-<button class="btn btn-secondary mb-2" onclick="window.location.href='/admin/usuarios/detalhes/:id{{this.ID_usuario}}'">Detalhes</button>
 
 {{/each}}
 <div class="card-footer text-muted">
