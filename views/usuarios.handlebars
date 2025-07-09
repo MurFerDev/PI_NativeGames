@@ -3,11 +3,14 @@
 {{#if usuarios.length}}
 {{#each usuarios}}
 
-<div class="card" style="width: 18rem; margin-bottom: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 10px;">
-  <img src="/static/images/user-default-img.png" class="card-img-top" alt="Imagem do Usuario" style="width: 100%; height: 50px; object-fit: cover;">
+<div class="card"
+  style="width: 18rem; margin-bottom: 5px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 10px;">
+  <img src="/static/images/user-default-img.png" class="card-img-top" alt="Imagem do Usuario"
+    style="width: 100%; height: 50px; object-fit: cover;">
   <div class="card-body">
     <h5 class="card-title">Nome: </strong>{{this.nome_usuario}}</h5>
     <p class="card-text"><strong>ID: </strong>{{this.ID_usuario}}</p>
+    <p class="card-text"><strong>Apelido: </strong>{{this.apelido_usuario}}</p>
     <p class="card-text"><strong>Email:</strong> {{this.email_usuario}}</p>
     <p class="card-text"><strong>Tipo:</strong> {{this.tipo_usuario}}</p>
     <a href="/admin/usuarios/detalhes/{{this.ID_usuario}}" class="btn btn-primary">Visualizar</a>
@@ -17,13 +20,9 @@
 
 {{/each}}
 <div class="card-footer text-muted">
-    <p>Total de usuarios: {{usuarios.length}}</p>
-    <button class="btn btn-secondary mb-2" onclick="window.location.href='/dashboard'">Voltar</button>
+  <p>Total de usuarios: {{usuarios.length}}</p>
+  <button class="btn btn-secondary mb-2" onclick="window.location.href='/dashboard'">Voltar</button>
 </div>
-{{!-- {{else if usuarios.error}}
-<p class="text-danger">Erro ao carregar os dados de usuarios: {{usuarios.error}}</p>
-{{else if usuarios.length === 0}}
-<p class="text-warning">Nenhum usuario encontrado.</p> --}}
 {{else}}
 <p>Sem dados de usuarios disponíveis no momento.</p>
 {{/if}}
