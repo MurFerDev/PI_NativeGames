@@ -25,7 +25,7 @@ app.put('/api/usuario/editar', autenticarToken, async (req, res) => {
       valores.push(usuarioId);
   
       const sql = `UPDATE tb_usuarios SET ${campos.join(', ')} WHERE id = ?`;
-      db.query(sql, valores, (err, result) => {
+      db.query(sql, valores, (err, res) => {
         if (err) {
           console.error('Erro ao atualizar usuário:', err);
           return res.status(500).json({ error: 'Erro ao atualizar perfil.' });
@@ -51,7 +51,7 @@ app.put('/api/usuario/editar', autenticarToken, async (req, res) => {
     }
   
     const insert = 'INSERT INTO tb_favoritos ID_usuario, ID_jogo) VALUES (?, ?)';
-    db.query(insert, [usuarioId, jogo_id], (err, result) => {
+    db.query(insert, [usuarioId, jogo_id], (err, res) => {
       if (err) {
         console.error('Erro ao adicionar favorito:', err);
         return res.status(500).json({ error: 'Erro ao adicionar favorito.' });
@@ -66,7 +66,7 @@ app.put('/api/usuario/editar', autenticarToken, async (req, res) => {
     const jogoId = req.params.ID_jogo;
   
     const del = 'DELETE FROM tb_favoritos WHERE ID_usuario = ? AND ID_jogo = ?';
-    db.query(del, [usuarioId, jogoId], (err, result) => {
+    db.query(del, [usuarioId, jogoId], (err, res) => {
       if (err) {
         console.error('Erro ao remover favorito:', err);
         return res.status(500).json({ error: 'Erro ao remover favorito.' });

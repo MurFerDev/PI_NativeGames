@@ -1,11 +1,11 @@
 <div class="container py-5">
-    <h2 class="mb-4 text-center">Editar Perfil</h2>
+    <h2 class="mb-4 text-center">Editar Perfil de Usuário</h2>
 
-    <form id="formEditar" class="mx-auto" style="max-width: 500px;">
+    <form id="formEditarUsuario" class="mx-auto" style="max-width: 500px;">
         <div class="form-group text-center">
             <label for="fotoPerfil">Foto de Perfil</label>
             <div>
-                <img id="previewFoto" src="../static/images/user-default-img.png" alt="Foto de Perfil"
+                <img id="previewFoto" src="/static/images/user-default-img.png" alt="Foto de Perfil"
                     class="rounded-circle mb-2" width="120" height="120" style="object-fit: cover;" />
             </div>
             <input type="file" class="form-control-file" id="fotoPerfil" accept="image/*" />
@@ -14,22 +14,18 @@
             <label for="nome">Nome completo</label>
             <input type="text" class="form-control" id="nome" required />
         </div>
-
         <div class="form-group">
             <label for="apelido">Apelido (nickname)</label>
             <input type="text" class="form-control" id="apelido" required />
         </div>
-
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" disabled />
+            <input type="email" class="form-control" id="email" disabled/ placeholder="{{this.email_usuario}}" />
         </div>
-
         <div class="form-group">
             <label for="telefone">Telefone</label>
             <input type="tel" class="form-control" id="telefone" placeholder="(11) 91234-5678" maxlength="15" />
         </div>
-
         <div class="form-group">
             <label for="senha">Nova senha (opcional)</label>
             <div class="input-group">
@@ -44,11 +40,8 @@
             <label for="confirmaSenha">Confirmar nova senha</label>
             <input type="password" class="form-control" id="confirmaSenha" />
         </div>
-
         <button type="submit" class="btn btn-primary btn-block mt-4">Salvar Alterações</button>
     </form>
 
     <div class="text-center mt-3">
         <a href="/dashboard" class="text-secondary">← Voltar ao Painel</a>
-    </div>
-</div>
