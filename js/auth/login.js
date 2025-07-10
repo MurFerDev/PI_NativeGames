@@ -1,4 +1,10 @@
 
+import {
+  post,
+  getUsuario,
+  logout
+} from '../utils/api.js';
+
 document.querySelector('#loginForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -6,29 +12,28 @@ document.querySelector('#loginForm').addEventListener('submit', async function (
     const senha = document.querySelector('#password').value;
 
     try {
-    const response = await fetch('http://localhost:3306/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, senha })
-    });
+        const response = await post('/api/usuarios/login', data);
 
-    const data = await response.json();
+        const data = await response.json();
 
-    if (!response.ok) {
-        alert(data.error || 'Erro no login.');
-        return;
-    }
+        if (resposta.token) {
 
-    // Armazena o token no localStorage
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('usuario', JSON.stringify(data.usuario));
+            // Armazena o token no localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('usuario', JSON.stringify(data.usuario));
 
-    alert('Login bem-sucedido!');
-    window.location.href = '/hub'; // Redireciona para o hub do usuário
+            if (resposta.usuario.tipo_usuario === 'admin') {
+                window.location.href = '/dashboard';
+            } else {
+                window.location.href = '/hub';
+            }
+        } else {
+            alert('Falha no login. Verifique suas credenciais.');
+        }
 
     } catch (err) {
-    console.error('Erro ao fazer login:', err);
-    alert('Erro ao se conectar com o servidor.');
+        console.error('Erro ao fazer login:', err);
+        alert('Erro ao se conectar com o servidor.');
     }
 
     registrarAcao(id_usuario, 'Login realizado com sucesso', '/api/usuario/login', 'POST');

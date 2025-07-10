@@ -1,17 +1,7 @@
-import { getUsuario, logout } from '../js/utils/api.js';
-/*
-const usuario = getUsuario();
+import {
+  getAutenticado,  logout
+} from '../utils/api.js';
 
-if (!usuario || usuario.tipo_usuario !== 'admin') {
-  alert('Acesso restrito ao painel administrativo.');
-  logout();
-  window.location.href = '../index.html';
-} else {
-  const nome = usuario.apelido_usuario || usuario.nome_usuario || 'Administrador';
-  document.querySelector('#boasVindas').textContent = `Olá, ${nome}`;
-  document.querySelector('#usuarioNomeDropdown').textContent = nomeExibicao;
-}
-*/
 document.querySelector('#logoutBtn').addEventListener('click', logout);
 
 
@@ -19,7 +9,7 @@ document.querySelector('#logoutBtn').addEventListener('click', logout);
 
 async function carregarDashboard() {
     try {
-        const res = await getAutenticado('http://localhost:3306/api/admin/dashboard');
+        const res = await getAutenticado('/api/admin/dashboard');
 
         document.querySelector('#totalJogos').textContent = res.totalJogos[0].total;
         document.querySelector('#totalUsuarios').textContent = res.totalUsuarios[0].total;
@@ -78,8 +68,8 @@ async function carregarDashboard() {
             }
         });
     } catch (err) {
-        console.error(err);
-        alert('Erro ao carregar dashboard.');
+        console.error('Erro ao carregar dashboard:', err);
+        alert('Erro ao carregar estatísticas.');
     }
 }
 

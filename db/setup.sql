@@ -9,8 +9,8 @@ CREATE TABLE tb_jogos (
     descricao_jogo TEXT,
     regiao_jogo VARCHAR(100),
     epoca_jogo VARCHAR(100),
-    latitude_jogo VARCHAR(45),
-    longitude_jogo VARCHAR(45),
+    latitude_jogo DECIMAL(9,6),
+    longitude_jogo DECIMAL(9,6),
     url_jogo VARCHAR(255),
     url_textura_jogo VARCHAR(255)
 );
@@ -20,13 +20,41 @@ INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo)
 VALUES ('Adugo - Jogo da Onça', 'Jogo de tabuleiro onde a onça tenta capturar os cachorros, e os cachorros tentam cercar a onça.', 'Brasil');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo)
 VALUES ('Dou Shou Qi', 'Tradicional jogo de tabuleiro chines, conhecido como batalha dos animais ou jogo da selva.');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
+VALUES ('Senet', 'Jogo egípcio antigo, considerado um dos jogos de tabuleiro mais antigos do mundo. É jogado em um tabuleiro retangular com 30 casas dispostas em três fileiras de dez casas cada.', 'Egito', '3100 a.C..'); 
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
+VALUES ('Mancala', 'Jogo de tabuleiro tradicional africano, onde os jogadores movem sementes ou pedras entre buracos em um tabuleiro.', 'África', '2000 a.C.');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
+VALUES ('Go', 'Jogo de estratégia milenar originário da China, onde dois jogadores colocam pedras pretas e brancas em um tabuleiro quadriculado, tentando cercar o território do adversário.', 'China', '2500 a.C.');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
+VALUES ('Bagha-Chal', 'Jogo de tabuleiro tradicional do Nepal, onde um jogador controla uma onça e o outro controla cinco cabras, tentando capturar ou escapar.', 'Nepal', 'Século 19');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
+VALUES ('Chaturanga', 'Antigo jogo indiano que é considerado o precursor do xadrez moderno, jogado em um tabuleiro 8x8 com peças representando infantaria, cavalaria, elefantes e carros de guerra.', 'Índia', 'Século 6');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
+VALUES ('Tafl', 'Jogo de tabuleiro nórdico antigo, onde um rei e seus guardas tentam escapar de um exército invasor, jogado em um tabuleiro quadrado com peças de diferentes formas.', 'Escandinávia', 'Século 8');
 
-CREATE TABLE tb_usuarios (
+/* Criação da tabela de CATEGORIAS dos jogos */
+CREATE TABLE tb_categorias ( 
+  ID_categoria INT AUTO_INCREMENT PRIMARY KEY,
+  nome_categoria VARCHAR(50) UNIQUE NOT NULL
+);
+
+/* Tabela de associação entre jogos e categorias */
+CREATE TABLE tb_jogos_categorias ( 
+  fk_jogo INT NOT NULL,
+  fk_categoria INT NOT NULL,
+  PRIMARY KEY (fk_jogo, fk_categoria),
+  FOREIGN KEY (fk_jogo) REFERENCES tb_jogos(ID_jogo) ON DELETE CASCADE,
+  FOREIGN KEY (fk_categoria) REFERENCES tb_categorias(ID_categoria) ON DELETE CASCADE
+);
+
+/* Criação da tabela de USUÁRIOS */
+CREATE TABLE tb_usuarios ( 
 ID_usuario INT AUTO_INCREMENT PRIMARY KEY,
 nome_usuario VARCHAR(45) NOT NULL,
 apelido_usuario VARCHAR(20),
 email_usuario VARCHAR(100) NOT NULL,
-senha_usuario VARCHAR(100) NOT NULL,
+senha_usuario CHAR(60) NOT NULL,
 telefone_usuario VARCHAR(20),
 data_nascimento DATE,
 genero_usuario ENUM('masculino', 'feminino', 'outro', 'não definido') DEFAULT 'não definido',
@@ -59,14 +87,6 @@ VALUES ('Edson Medeiros', 'e.pezutijr@gmail.com', 'senac123', '11958211700', 'pr
 INSERT INTO tb_usuarios(nome_usuario, email_usuario, senha_usuario, telefone_usuario, tipo_usuario)
 VALUES ('Kátia R L Pezuti', 'katiarleite@gmail.com', 'senac123', '11958312222', 'premium');
 
-CREATE TABLE tb_favoritos (
-ID_favorito INT AUTO_INCREMENT PRIMARY KEY,
-fk_jogo INT NOT NULL,
-fk_usuario INT NOT NULL,
-CONSTRAINT fk_usuario FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE CASCADE,
-CONSTRAINT fk_jogo FOREIGN KEY (fk_jogo) REFERENCES tb_jogos(ID_jogo) ON DELETE CASCADE
-);
-
 /* Criação da tabelas de ESTATÍSTICAS do usuário */
 CREATE TABLE tb_estatisticas_usuarios(
 ID_estatisticas_usuario INT AUTO_INCREMENT PRIMARY KEY,
@@ -77,6 +97,37 @@ fk_usuario INT NOT NULL,
 fk_jogo INT NOT NULL,
 FOREIGN KEY (fk_jogo) REFERENCES tb_jogos(ID_jogo),
 FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario)
+);
+
+CREATE TABLE tb_favoritos (
+ID_favorito INT AUTO_INCREMENT PRIMARY KEY,
+fk_jogo INT NOT NULL,
+fk_usuario INT NOT NULL,
+CONSTRAINT fk_fav_usuario FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE CASCADE,
+CONSTRAINT fk_fav_jogo FOREIGN KEY (fk_jogo) REFERENCES tb_jogos(ID_jogo) ON DELETE CASCADE
+);
+
+/* Tabela de comentários dos jogos */
+CREATE TABLE tb_comentarios ( 
+  ID_comentario INT AUTO_INCREMENT PRIMARY KEY,
+  fk_usuario INT NOT NULL,
+  fk_jogo INT NOT NULL,
+  texto TEXT NOT NULL,
+  criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE CASCADE,
+  FOREIGN KEY (fk_jogo) REFERENCES tb_jogos(ID_jogo) ON DELETE CASCADE
+);
+
+/* Avaliações dos jogos pelos usuários */
+CREATE TABLE tb_avaliacoes (
+  ID_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
+  fk_usuario INT NOT NULL,
+  fk_jogo INT NOT NULL,
+  nota TINYINT NOT NULL CHECK (nota BETWEEN 1 AND 5),
+  criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE (fk_usuario, fk_jogo),
+  FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE CASCADE,
+  FOREIGN KEY (fk_jogo) REFERENCES tb_jogos(ID_jogo) ON DELETE CASCADE
 );
 
 /* Criando uma Tabela de Log de acesso dos usuários.
@@ -108,5 +159,6 @@ CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
 );
 
 /* Criação de índices auxiliares para consultas frequentes em tabelas com FK */
-CREATE INDEX idx_email_usuario ON tb_usuarios(email_usuario);
-CREATE INDEX idx_jogo_favorito_usuario ON tb_favoritos(fk_usuario, fk_jogo);
+CREATE UNIQUE INDEX idx_email_usuario ON tb_usuarios(email_usuario);
+CREATE UNIQUE INDEX idx_nome_jogo ON tb_jogos(nome_jogo);
+CREATE UNIQUE INDEX idx_jogo_favorito_usuario ON tb_favoritos(fk_usuario, fk_jogo);

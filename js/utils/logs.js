@@ -1,4 +1,6 @@
-import { getAutenticado, getUsuario, logout } from '../js/utils/api.js';
+import {
+  getAutenticado, logout
+} from '../utils/api.js';
 
 const verificacaoDiv = document.querySelector('#verificacao-acesso');
 const conteudoDiv = document.querySelector('#conteudo-principal');

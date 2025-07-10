@@ -1,5 +1,6 @@
-import { postAutenticado } from '../utils/api.js';
-
+import {
+  post
+} from '../utils/api.js';
 
 document.querySelector('#registerForm').addEventListener('submit', async function (e) {
   e.preventDefault();
@@ -7,6 +8,7 @@ document.querySelector('#registerForm').addEventListener('submit', async functio
   const nome = document.querySelector('#nome').value;
   const email = document.querySelector('#email').value;
   const senha = document.querySelector('#password').value;
+  const apelido_usuario = document.querySelector('#apelido').value;
 
   if (!nome || !email || !senha) {
     alert('Preencha todos os campos.');
@@ -14,10 +16,11 @@ document.querySelector('#registerForm').addEventListener('submit', async functio
   }
 
   try {
-    const response = await fetch('http://localhost:3306/api/registrar', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, email, senha })
+    const response = await post('/api/usuarios/register', {
+      nome,
+      email,
+      senha,
+      apelido_usuario
     });
 
     const data = await response.json();
