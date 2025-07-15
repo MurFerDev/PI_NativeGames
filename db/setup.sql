@@ -12,22 +12,22 @@ CREATE TABLE tb_jogos (
     latitude_jogo DECIMAL(9,6),
     longitude_jogo DECIMAL(9,6),
     url_jogo VARCHAR(255),
-    url_textura_jogo VARCHAR(255)
+    url_thumbnail_jogo VARCHAR(255)
 );
 
 /* Inserção de dados dos jogos */
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo)
-VALUES ('Adugo - Jogo da Onça', 'Jogo de tabuleiro onde a onça tenta capturar os cachorros, e os cachorros tentam cercar a onça.', 'Brasil');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo)
-VALUES ('Dou Shou Qi', 'Tradicional jogo de tabuleiro chines, conhecido como batalha dos animais ou jogo da selva.');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
-VALUES ('Senet', 'Jogo egípcio antigo, considerado um dos jogos de tabuleiro mais antigos do mundo. É jogado em um tabuleiro retangular com 30 casas dispostas em três fileiras de dez casas cada.', 'Egito', '3100 a.C..'); 
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Adugo - Jogo da Onça', 'Jogo de tabuleiro onde a onça tenta capturar os cachorros, e os cachorros tentam cercar a onça.', 'Brasil', 'adugo', 'adugo.png');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Dou Shou Qi', 'Tradicional jogo de tabuleiro chines, conhecido como batalha dos animais ou jogo da selva.', 'doushouqi', 'doushouqi.png');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo)
+VALUES ('Senet', 'Jogo egípcio antigo, considerado um dos jogos de tabuleiro mais antigos do mundo. É jogado em um tabuleiro retangular com 30 casas dispostas em três fileiras de dez casas cada.', 'Egito', '3100 a.C..', 'senet.png'); 
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
 VALUES ('Mancala', 'Jogo de tabuleiro tradicional africano, onde os jogadores movem sementes ou pedras entre buracos em um tabuleiro.', 'África', '2000 a.C.');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
 VALUES ('Go', 'Jogo de estratégia milenar originário da China, onde dois jogadores colocam pedras pretas e brancas em um tabuleiro quadriculado, tentando cercar o território do adversário.', 'China', '2500 a.C.');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
-VALUES ('Bagha-Chal', 'Jogo de tabuleiro tradicional do Nepal, onde um jogador controla uma onça e o outro controla cinco cabras, tentando capturar ou escapar.', 'Nepal', 'Século 19');
+VALUES ('Bagha-Chal', 'Jogo de tabuleiro tradicional do Nepal, onde um jogador controla uma onça e o outro controla cinco cabras, tentando capturar ou escapar.', 'Nepal', 'Século 19', 'baghachall.png');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
 VALUES ('Chaturanga', 'Antigo jogo indiano que é considerado o precursor do xadrez moderno, jogado em um tabuleiro 8x8 com peças representando infantaria, cavalaria, elefantes e carros de guerra.', 'Índia', 'Século 6');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)

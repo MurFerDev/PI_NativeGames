@@ -4,8 +4,8 @@
     <ul class="list-group">
         {{#each jogos}}
             <li class="list-group-item">
-                <a href="" id="link-do-jogo"><h5>{{this.nome_jogo}}</h5></a>
-                <img src="../static/images/adugo.png" alt="Adugo - O Jogo da Onça" class="img-fluid mb-2" style="max-width: 200px; height: auto;">
+                <a href="/{{this.url_jogo}}" id="link-do-jogo"><h5>{{this.nome_jogo}}.png</h5></a>
+                <img src="{{this.url_thumbnail_jogo}}" alt="{{this.nome_jogo}}" class="img-fluid mb-2" style="max-width: 200px; height: auto;">
                 <p><strong>Gênero:</strong> {{this.genero}}</p>
                 <p><strong>Plataforma:</strong> {{this.plataforma}}</p>
                 <p><strong>Lançamento:</strong> {{this.data_lancamento}}</p>
