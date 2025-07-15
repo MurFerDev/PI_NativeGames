@@ -118,24 +118,24 @@ exports.editar = async (req, res) => {
 };
 
 // controllers/adminController.js
-const db = require('../database/db.js');
+// const db = require('../database/db.js');
 
-exports.getDashboardData = (req, res) => {
-  const sql = `
-    SELECT COUNT(*) AS totalUsuarios FROM tb_usuarios;
-    SELECT COUNT(*) AS totalJogos FROM tb_jogos;
-    SELECT COUNT(*) AS totalAcessosHoje FROM tb_log_acesso_usuarios WHERE DATE(data_acesso) = CURDATE();
-  `;
+// exports.getDashboardData = (req, res) => {
+//   const sql = `
+//     SELECT COUNT(*) AS totalUsuarios FROM tb_usuarios;
+//     SELECT COUNT(*) AS totalJogos FROM tb_jogos;
+//     SELECT COUNT(*) AS totalAcessosHoje FROM tb_log_acesso_usuarios WHERE DATE(data_acesso) = CURDATE();
+//   `;
 
-  db.query(sql, [1, 2, 3], (err, results) => {
-    if (err) return res.status(500).json({ error: 'Erro ao buscar dados da dashboard.' });
-    res.status(200).json({
-      totalUsuarios: results[0][0].totalUsuarios,
-      totalJogos: results[1][0].totalJogos,
-      acessosHoje: results[2][0].totalAcessosHoje
-    });
-  });
-};
+//   db.query(sql, [1, 2, 3], (err, results) => {
+//     if (err) return res.status(500).json({ error: 'Erro ao buscar dados da dashboard.' });
+//     res.status(200).json({
+//       totalUsuarios: results[0][0].totalUsuarios,
+//       totalJogos: results[1][0].totalJogos,
+//       acessosHoje: results[2][0].totalAcessosHoje
+//     });
+//   });
+// };
 
 exports.getLogs = (req, res) => {
   db.query('SELECT * FROM tb_log_acesso_usuarios ORDER BY data_acesso DESC LIMIT 100', (err, results) => {
