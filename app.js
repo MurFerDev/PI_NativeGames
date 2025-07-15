@@ -11,7 +11,7 @@ const path = require('path');
 const conexao = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '@MySQL_$3n4c#',
+    password: process.env.DB_PASSWORD || 'senac',
     database: process.env.DB_NAME || 'native_games_DB'
 });
 
