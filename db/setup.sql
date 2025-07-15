@@ -18,16 +18,14 @@ CREATE TABLE tb_jogos (
 /* Inserção de dados dos jogos */
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, url_jogo, url_thumbnail_jogo)
 VALUES ('Adugo - Jogo da Onça', 'Jogo de tabuleiro onde a onça tenta capturar os cachorros, e os cachorros tentam cercar a onça.', 'Brasil', 'adugo', 'adugo.png');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, url_jogo, url_thumbnail_jogo)
-VALUES ('Dou Shou Qi', 'Tradicional jogo de tabuleiro chines, conhecido como batalha dos animais ou jogo da selva.', 'doushouqi', 'doushouqi.png');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Dou Shou Qi', 'Tradicional jogo de tabuleiro chines, conhecido como batalha dos animais ou jogo da selva.', 'China', 'doushouqi', 'doushouqi.png');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo)
 VALUES ('Senet', 'Jogo egípcio antigo, considerado um dos jogos de tabuleiro mais antigos do mundo. É jogado em um tabuleiro retangular com 30 casas dispostas em três fileiras de dez casas cada.', 'Egito', '3100 a.C..', 'senet.png'); 
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
-VALUES ('Mancala', 'Jogo de tabuleiro tradicional africano, onde os jogadores movem sementes ou pedras entre buracos em um tabuleiro.', 'África', '2000 a.C.');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
-VALUES ('Go', 'Jogo de estratégia milenar originário da China, onde dois jogadores colocam pedras pretas e brancas em um tabuleiro quadriculado, tentando cercar o território do adversário.', 'China', '2500 a.C.');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
-VALUES ('Bagha-Chal', 'Jogo de tabuleiro tradicional do Nepal, onde um jogador controla uma onça e o outro controla cinco cabras, tentando capturar ou escapar.', 'Nepal', 'Século 19', 'baghachall.png');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Mancala', 'Jogo de tabuleiro tradicional africano, onde os jogadores movem sementes ou pedras entre buracos em um tabuleiro.', 'África', '2000 a.C.', 'mancala', 'mancala.png');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Bagha-Chall', 'Jogo de tabuleiro tradicional do Nepal, onde um jogador controla uma onça e o outro controla cinco cabras, tentando capturar ou escapar.', 'Nepal', 'Século 19', 'baghachall' ,'baghachall.png');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
 VALUES ('Chaturanga', 'Antigo jogo indiano que é considerado o precursor do xadrez moderno, jogado em um tabuleiro 8x8 com peças representando infantaria, cavalaria, elefantes e carros de guerra.', 'Índia', 'Século 6');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
@@ -150,7 +148,7 @@ CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
   ID_log_acao_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT NOT NULL,
   fj_jogo INT,
-  acao ENUM('login', 'logout', 'cadastro', 'edicao_perfil', 'adicionar_favorito', 'remover_favorito', 'jogar', 'avaliar_jogo', 'reportar_bug', 'alterar_senha') NOT NULL,
+  acao ENUM('login', 'logout', 'cadastro', 'edicao_perfil', 'adicionar_favorito', 'remover_favorito', 'jogar', 'avaliar_jogo', 'comentar_jogo', 'reportar_bug', 'alterar_senha') NOT NULL,
   descricao_acao TEXT,
   rota_afetada VARCHAR(255),
   metodo_http VARCHAR(10),
