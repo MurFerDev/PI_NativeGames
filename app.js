@@ -25,7 +25,7 @@ conexao.connect(function (erro) {
 });
 
 // Configuração do middleware para servir arquivos estáticos
-app.use(express.static(__dirname + '/static')); // Pasta para arquivos estáticos
+app.use('/static', express.static(__dirname + '/static')); // Pasta para arquivos estáticos
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')); // Pasta para o Bootstrap
 app.use(express.urlencoded({ extended: true })); // Middleware para analisar dados de formulários
 // Configuração do Handlebars como motor de visualização
@@ -207,10 +207,6 @@ app.post('/admin/usuarios/excluir/:id', (req, res) => {
     });
 });
 
-// Rota para exibir o formulário depesquisa de usuarios
-app.get('/admin/usuarios/pesquisar-form', (req, res) => {
-    res.render('pesquisar'); // esta é a página com o <form>
-});
 
 // Rota para processar a pesquisa
 app.get('/admin/usuarios/pesquisar', (req, res) => {
@@ -218,7 +214,7 @@ app.get('/admin/usuarios/pesquisar', (req, res) => {
     console.log('Termo recebido para pesquisa:', termo);
 
     if (!termo) {
-        return res.redirect('/admin/usuarios/pesquisar-form');
+        res.render('pesquisar'); // esta é a página com o <form>
     }
 
     const sql = `
