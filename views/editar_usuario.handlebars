@@ -6,30 +6,30 @@
             <label for="fotoPerfil">Foto de Perfil</label>
             <div>
                 <img id="previewFoto" src="/static/images/user-default-img.png" alt="Foto de Perfil"
-                    class="rounded-circle mb-2" width="120" height="120" style="object-fit: cover;" />
+                    class="rounded-circle mb-6" width="50" height="50" style="object-fit: cover;" />
             </div>
             <input type="file" class="form-control-file" id="fotoPerfil" accept="image/*" />
         </div>
         <div class="form-group">
             <label for="nome">Nome completo</label>
-            <input type="text" class="form-control" id="nome" required />
+            <input type="text" class="form-control" id="nome" required placeholder="{{usuario.nome_usuario}}"/>
         </div>
         <div class="form-group">
             <label for="apelido">Apelido (nickname)</label>
-            <input type="text" class="form-control" id="apelido" required />
+            <input type="text" class="form-control" id="apelido" required placeholder="{{usuario.apelido_usuario}}" />
         </div>
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" disabled/ placeholder="{{this.email_usuario}}" />
+            <input type="email" class="form-control" id="email" disabled/ placeholder="{{usuario.email_usuario}}" />
         </div>
         <div class="form-group">
             <label for="telefone">Telefone</label>
-            <input type="tel" class="form-control" id="telefone" placeholder="(11) 91234-5678" maxlength="15" />
+            <input type="tel" class="form-control" id="telefone" placeholder="{{usuario.telefone_usuario}}" maxlength="15" />
         </div>
         <div class="form-group">
             <label for="senha">Nova senha (opcional)</label>
             <div class="input-group">
-                <input type="password" class="form-control" id="senha" />
+                <input type="password" class="form-control" id="senha" placeholder="{{usuario.senha_usuario}}" />
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" id="toggleSenha">👁️</button>
                 </div>
@@ -44,4 +44,4 @@
     </form>
 
     <div class="text-center mt-3">
-        <a href="/dashboard" class="text-secondary">← Voltar ao Painel</a>
+        <a href="/hub" class="text-secondary">← Voltar ao Painel</a>

@@ -1,5 +1,5 @@
 <h1 class="text-center my-4"> ADM - Adicionar Usuário
-{{#if editar_usuario}}Editar Usuário{{else}}Adicionar Usuário{{/if}}
+  {{#if editar_usuario}}Editar Usuário{{else}}Adicionar Usuário{{/if}}
 </h1>
 
 <div class="container" style="max-width: 80%;">
@@ -9,72 +9,82 @@
       <form action="{{formAction}}" method="POST" enctype="multipart/form-data">
 
         <div class="form-group">
-          <label for="nome_usuario">Nome Completo:</label>
-          <input type="text" class="form-control" name="nome_usuario" value="{{this.nome_usuario}}" title="Nome completo">
+          <label for="nome">Nome Completo:</label>
+          <input type="text" class="form-control" name="nome" value="{{usuario.nome_usuario}}" title="Nome completo"
+            required>
         </div>
 
         <div class="form-group">
-          <label for="email_usuario">Email:</label>
-          <input type="email" class="form-control" name="email_usuario" value="{{this.email_usuario}}" title="Email" required>
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" name="email" value="{{usuario.email_usuario}}" title="Email"
+            required>
         </div>
 
         <div class="form-group">
-          <label for="telefone_usuario">Telefone:</label>
-          <input type="text" class="form-control" name="telefone_usuario" value="{{this.telefone_usuario}}" placeholder="(XX) XXXXX-XXXX" pattern="\(\d{2}\) \d{5}-\d{4}" title="Formato: (XX) XXXXX-XXXX" required>
+          <label for="telefone">Telefone:</label>
+          <input type="text" class="form-control" name="telefone" value="{{usuario.telefone_usuario}}"
+            placeholder="(XX) XXXXX-XXXX" pattern="\(\d{2}\)\d{5}-\d{4}" title="Formato: (XX) XXXXX-XXXX" required>
         </div>
 
         <div class="form-group">
-          <label for="apelido_usuario">Apelido:</label>
-          <input type="text" class="form-control" name="apelido_usuario" value="{{this.apelido_usuario}}" title="Apelido ou nickname">
+          <label for="apelido">Apelido:</label>
+          <input type="text" class="form-control" name="apelido" value="{{usuario.apelido_usuario}}"
+            title="Apelido ou nickname" required>
         </div>
 
         <div class="form-group">
           <label for="data_nascimento">Data de Nascimento:</label>
-          <input type="date" class="form-control" name="data_nascimento" value="{{this.data_nascimento}}" title="Data de nascimento">
+          <input type="date" class="form-control" name="data_nascimento" value="{{usuario.data_nascimento}}"
+            title="Data de nascimento" required>
         </div>
 
         <div class="form-group">
-          <label for="genero_usuario">Gênero:</label>
-          <select class="form-control" name="genero_usuario">
+          <label for="genero">Gênero:</label>
+          <select class="form-control" name="genero">
             <option value="">Selecione</option>
-            <option value="masculino" {{#ifCond this.genero_usuario '==' 'masculino'}}selected{{/ifCond}}>Masculino</option>
-            <option value="feminino" {{#ifCond this.genero_usuario '==' 'feminino'}}selected{{/ifCond}}>Feminino</option>
-            <option value="outro" {{#ifCond this.genero_usuario '==' 'outro'}}selected{{/ifCond}}>Outro</option>
-            <option value="não definido" {{#ifCond this.genero_usuario '==' 'não definido'}}selected{{/ifCond}}>Não Definido</option>
+            <option value="masculino" {{#ifCond usuario.genero_usuario '==' 'masculino' }}selected{{/ifCond}}>Masculino
+            </option>
+            <option value="feminino" {{#ifCond usuario.genero_usuario '==' 'feminino' }}selected{{/ifCond}}>Feminino
+            </option>
+            <option value="outro" {{#ifCond usuario.genero_usuario '==' 'outro' }}selected{{/ifCond}}>Outro</option>
+            <option value="não definido" {{#ifCond usuario.genero_usuario '==' 'não definido' }}selected{{/ifCond}}>Não
+              Definido</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="status_usuario">Status atual: {{this.status_usuario}}</label>
-          <select class="form-control" name="status_usuario">
-            <option value="ativo" {{#ifCond this.status_usuario '==' 'ativo'}}selected{{/ifCond}}>Ativo</option>
-            <option value="inativo" {{#ifCond this.status_usuario '==' 'inativo'}}selected{{/ifCond}}>Inativo</option>
-            <option value="bloqueado" {{#ifCond this.status_usuario '==' 'bloqueado'}}selected{{/ifCond}}>Bloqueado</option>
-            <option value="banido" {{#ifCond this.status_usuario '==' 'banido'}}selected{{/ifCond}}>Banido</option>
+          <label for="status">Status atual: {{usuario.status_usuario}}</label>
+          <select class="form-control" name="status">
+            <option value="ativo" {{#ifCond usuario.status_usuario '==' 'ativo' }}selected{{/ifCond}}>Ativo</option>
+            <option value="inativo" {{#ifCond usuario.status_usuario '==' 'inativo' }}selected{{/ifCond}}>Inativo
+            </option>
+            <option value="bloqueado" {{#ifCond usuario.status_usuario '==' 'bloqueado' }}selected{{/ifCond}}>Bloqueado
+            </option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="tipo_usuario">Tipo de Usuário: {{this.tipo_usuario}}</label>
-          <select class="form-control" name="tipo_usuario">
-            <option value="comum" {{#ifCond this.tipo_usuario '==' 'comum'}}selected{{/ifCond}}>Comum</option>
-            <option value="registrado" {{#ifCond this.tipo_usuario '==' 'registrado'}}selected{{/ifCond}}>Registrado</option>
-            <option value="premium" {{#ifCond this.tipo_usuario '==' 'premium'}}selected{{/ifCond}}>Premium</option>
-            <option value="parceiro" {{#ifCond this.tipo_usuario '==' 'parceiro'}}selected{{/ifCond}}>Parceiro</option>
-            <option value="gametester" {{#ifCond this.tipo_usuario '==' 'gametester'}}selected{{/ifCond}}>GameTester</option>
-            <option value="moderador" {{#ifCond this.tipo_usuario '==' 'moderador'}}selected{{/ifCond}}>Moderador</option>
-            <option value="dev" {{#ifCond this.tipo_usuario '==' 'dev'}}selected{{/ifCond}}>Desenvolvedor</option>
-            <option value="admin" {{#ifCond this.tipo_usuario '==' 'admin'}}selected{{/ifCond}}>Admin</option>
+          <label for="tipo">Tipo de Usuário: {{usuario.tipo_usuario}}</label>
+          <select class="form-control" name="tipo">
+            <option value="registrado" {{#ifCond usuario.tipo_usuario '==' 'registrado' }}selected{{/ifCond}}>Registrado
+            </option>
+            <option value="premium" {{#ifCond usuario.tipo_usuario '==' 'premium' }}selected{{/ifCond}}>Premium</option>
+            <option value="parceiro" {{#ifCond usuario.tipo_usuario '==' 'parceiro' }}selected{{/ifCond}}>Parceiro
+            </option>
+            <option value="gametester" {{#ifCond usuario.tipo_usuario '==' 'gametester' }}selected{{/ifCond}}>GameTester
+            </option>
+            <option value="moderador" {{#ifCond usuario.tipo_usuario '==' 'moderador' }}selected{{/ifCond}}>Moderador
+            </option>
+            <option value="dev" {{#ifCond usuario.tipo_usuario '==' 'dev' }}selected{{/ifCond}}>Desenvolvedor</option>
+            <option value="admin" {{#ifCond usuario.tipo_usuario '==' 'admin' }}selected{{/ifCond}}>Admin</option>
           </select>
         </div>
 
-    <button type="submit" class="btn btn-primary mt-3">
-      {{#if editar_usuario}}Salvar Alterações{{else}}Salvar Novo Usuário{{/if}}
-    </button>
+        <button type="submit" class="btn btn-primary mt-3">
+          {{#if editar_usuario}}Salvar Alterações{{else}}Salvar Novo Usuário{{/if}}
+        </button>
       </form>
 
       <div class="text-center mt-3">
         <a href="/admin/usuarios" class="btn btn-secondary">← Voltar à Lista de Usuários</a>
       </div>
-
-

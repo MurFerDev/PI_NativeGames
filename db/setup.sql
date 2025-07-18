@@ -20,16 +20,16 @@ INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, url_jogo, url_thumb
 VALUES ('Adugo - Jogo da Onça', 'Jogo de tabuleiro onde a onça tenta capturar os cachorros, e os cachorros tentam cercar a onça.', 'Brasil', 'adugo', 'adugo.png');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, url_jogo, url_thumbnail_jogo)
 VALUES ('Dou Shou Qi', 'Tradicional jogo de tabuleiro chines, conhecido como batalha dos animais ou jogo da selva.', 'China', 'doushouqi', 'doushouqi.png');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo)
-VALUES ('Senet', 'Jogo egípcio antigo, considerado um dos jogos de tabuleiro mais antigos do mundo. É jogado em um tabuleiro retangular com 30 casas dispostas em três fileiras de dez casas cada.', 'Egito', '3100 a.C..', 'senet.png'); 
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Senet', 'Jogo egípcio antigo, considerado um dos jogos de tabuleiro mais antigos do mundo. É jogado em um tabuleiro retangular com 30 casas dispostas em três fileiras de dez casas cada.', 'Egito', '3100 a.C..', 'senet', 'senet.png'); 
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
 VALUES ('Mancala', 'Jogo de tabuleiro tradicional africano, onde os jogadores movem sementes ou pedras entre buracos em um tabuleiro.', 'África', '2000 a.C.', 'mancala', 'mancala.png');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
 VALUES ('Bagha-Chall', 'Jogo de tabuleiro tradicional do Nepal, onde um jogador controla uma onça e o outro controla cinco cabras, tentando capturar ou escapar.', 'Nepal', 'Século 19', 'baghachall' ,'baghachall.png');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
-VALUES ('Chaturanga', 'Antigo jogo indiano que é considerado o precursor do xadrez moderno, jogado em um tabuleiro 8x8 com peças representando infantaria, cavalaria, elefantes e carros de guerra.', 'Índia', 'Século 6');
-INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo)
-VALUES ('Tafl', 'Jogo de tabuleiro nórdico antigo, onde um rei e seus guardas tentam escapar de um exército invasor, jogado em um tabuleiro quadrado com peças de diferentes formas.', 'Escandinávia', 'Século 8');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Chaturanga', 'Antigo jogo indiano que é considerado o precursor do xadrez moderno, jogado em um tabuleiro 8x8 com peças representando infantaria, cavalaria, elefantes e carros de guerra.', 'Índia', 'Século 6', 'chaturanga', 'chaturanga.png');
+INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
+VALUES ('Tafl', 'Jogo de tabuleiro nórdico antigo, onde um rei e seus guardas tentam escapar de um exército invasor, jogado em um tabuleiro quadrado com peças de diferentes formas.', 'Escandinávia', 'Século 8', 'tafl', 'tafl.png');
 
 /* Criação da tabela de CATEGORIAS dos jogos */
 CREATE TABLE tb_categorias ( 

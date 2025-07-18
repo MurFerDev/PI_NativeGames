@@ -2,6 +2,7 @@ require('dotenv').config();
 
 // Importação de módulos necessários
 const express = require('express');
+const bodyParser = require('body-parser')
 const app = express();
 const { engine } = require('express-handlebars');
 const mysql = require('mysql2');
@@ -28,6 +29,8 @@ conexao.connect(function (erro) {
 app.use('/static', express.static(__dirname + '/static')); // Pasta para arquivos estáticos
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist')); // Pasta para o Bootstrap
 app.use(express.urlencoded({ extended: true })); // Middleware para analisar dados de formulários
+app.use(bodyParser.json()); // Middleware para analisar JSON no corpo das requisições
+
 // Configuração do Handlebars como motor de visualização
 app.engine('handlebars', engine({
     defaultLayout: 'main',
@@ -179,9 +182,9 @@ app.get('/admin/usuarios/adicionar', (req, res) => {
 
 // Rota para processar o formulário de adição de usuário
 app.post('/admin/usuarios/adicionar', (req, res) => {
-    const { nome_usuario, email_usuario, senha_usuario, tipo_usuario } = req.body;
-    const sql = 'INSERT INTO tb_usuarios (nome_usuario, email_usuario, senha_usuario, tipo_usuario) VALUES (?, ?, ?, ?)';
-    conexao.query(sql, [nome_usuario, email_usuario, senha_usuario, tipo_usuario], function (erro) {
+    const { nome, email, telefone, apelido, data_nascimento, status, genero, tipo } = req.body;
+    const sql = 'INSERT INTO tb_usuarios (nome_usuario, email_usuario, telefone_usuario, apelido_usuario, data_nascimento, genero_usuario, status_usuario, tipo_usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    conexao.query(sql, [nome, email, telefone, apelido, data_nascimento, status, genero, tipo], function (erro) {
         if (erro) {
             console.error('Erro ao inserir usuário:', erro);
             res.status(500).send('Erro ao inserir usuário');

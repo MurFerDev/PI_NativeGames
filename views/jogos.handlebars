@@ -4,7 +4,7 @@
     <ul class="list-group">
         {{#each jogos}}
             <li class="list-group-item">
-                <a href="/{{this.url_jogo}}" id="link-do-jogo"><h5>{{this.nome_jogo}}.png</h5></a>
+                <a href="/{{this.url_jogo}}" id="link-do-jogo"><h5>{{this.nome_jogo}}</h5></a>
                 <img src="/static/images/{{this.url_thumbnail_jogo}}" alt="{{this.nome_jogo}}" class="img-fluid mb-2" style="max-width: 200px; height: auto;">
                 <p><strong>Gênero:</strong> {{this.genero}}</p>
                 <p><strong>Plataforma:</strong> {{this.plataforma}}</p>
