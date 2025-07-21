@@ -1,13 +1,28 @@
-const db = require('../database/db.js');
+const Favoritos = require('../models/favoritosModel');
 
-exports.adicionar = (req, res) => {
-  res.status(200).json({ message: 'Jogo adicionado aos favoritos' });
+exports.listar = async (req, res) => {
+  try {
+    const lista = await Favoritos.listar(req.usuario.id);
+    res.json(lista);
+  } catch (err) {
+    res.status(500).json({ erro: 'Erro ao buscar favoritos.' });
+  }
 };
 
-exports.remover = (req, res) => {
-  res.status(200).json({ message: 'Jogo removido dos favoritos' });
+exports.adicionar = async (req, res) => {
+  try {
+    await Favoritos.adicionar(req.usuario.id, req.body.id_jogo);
+    res.status(201).json({ msg: 'Adicionado aos favoritos.' });
+  } catch (err) {
+    res.status(500).json({ erro: 'Erro ao adicionar favorito.' });
+  }
 };
 
-exports.listar = (req, res) => {
-  res.status(200).json([{ id: 1, nome: 'Adugo' }, { id: 2, nome: 'Senet' }]);
+exports.remover = async (req, res) => {
+  try {
+    await Favoritos.remover(req.usuario.id, req.params.id_jogo);
+    res.json({ msg: 'Removido dos favoritos.' });
+  } catch (err) {
+    res.status(500).json({ erro: 'Erro ao remover favorito.' });
+  }
 };

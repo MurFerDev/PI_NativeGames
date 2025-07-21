@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'chave_padrao_secreta';
 
-module.exports = function autenticarToken(req, res, next) {
+function autenticarToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -15,7 +15,9 @@ module.exports = function autenticarToken(req, res, next) {
       return res.status(403).json({ error: 'Token inválido ou expirado.' });
     }
 
-    req.usuario = usuario; // armazena o payload decodificado
+    req.usuario = usuario; // Adiciona payload decodificado à requisição
     next();
   });
-};
+}
+
+module.exports = autenticarToken;
