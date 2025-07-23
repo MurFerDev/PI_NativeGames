@@ -1,4 +1,4 @@
-const db = require('../database/db.js');
+const db = require('../config/db');
 
 exports.loginGoogle = (req, res) => {
   res.status(200).json({ message: 'Login com Google simulado' });

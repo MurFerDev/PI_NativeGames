@@ -22,7 +22,7 @@ if (!usuario || usuario.tipo_usuario !== 'admin') {
     carregarLogs();
 }
 */
-const db = require('/server/database/db.js');
+const db = require('../config/db');
 
 function registrarAcao(usuarioId, acao, rota, metodo) {
   const sql = `

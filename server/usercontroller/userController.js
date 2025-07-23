@@ -1,3 +1,5 @@
+const db = require('../config/db');
+
 // Rota para edição de perfil
 app.put('/api/usuario/editar', autenticarToken, async (req, res) => {
     const { nome, senha } = req.body;

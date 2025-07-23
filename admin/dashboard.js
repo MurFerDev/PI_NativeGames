@@ -80,7 +80,7 @@ carregarDashboard();
 // Variáveis para a Dashboard do painel administrativo
 const express = require('express');
 const router = express.Router();
-const db = require('/server/database/db.js');
+const db = require('../config/db');
 const autenticarToken = require('../middleware/authMiddleware');
 const verificarAdmin = require('../middleware/adminMiddleware');
 

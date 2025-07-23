@@ -1,3 +1,4 @@
+const db = require('../config/db');
 const Jogo = require('../models/jogoModel');
 
 exports.listarTodos = async (req, res) => {

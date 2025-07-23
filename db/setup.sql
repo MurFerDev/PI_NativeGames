@@ -23,7 +23,7 @@ VALUES ('Dou Shou Qi', 'Tradicional jogo de tabuleiro chines, conhecido como bat
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
 VALUES ('Senet', 'Jogo egípcio antigo, considerado um dos jogos de tabuleiro mais antigos do mundo. É jogado em um tabuleiro retangular com 30 casas dispostas em três fileiras de dez casas cada.', 'Egito', '3100 a.C..', 'senet', 'senet.png'); 
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
-VALUES ('Mancala', 'Jogo de tabuleiro tradicional africano, onde os jogadores movem sementes ou pedras entre buracos em um tabuleiro.', 'África', '2000 a.C.', 'mancala', 'mancala.png');
+VALUES ('Mancala', 'Jogo tradicional africano, onde os jogadores movem sementes ou pedras entre buracos em um tabuleiro.', 'África', '2000 a.C.', 'mancala', 'mancala.png');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)
 VALUES ('Bagha-Chall', 'Jogo de tabuleiro tradicional do Nepal, onde um jogador controla uma onça e o outro controla cinco cabras, tentando capturar ou escapar.', 'Nepal', 'Século 19', 'baghachall' ,'baghachall.png');
 INSERT INTO tb_jogos(nome_jogo, descricao_jogo, regiao_jogo, epoca_jogo, url_jogo, url_thumbnail_jogo)

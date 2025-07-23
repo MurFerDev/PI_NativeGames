@@ -1,4 +1,4 @@
-const db = require('../database/db.js');
+const db = require('../config/db');
 
 exports.getDadosHub = (req, res) => {
   res.status(200).json({ jogos: [], conquistas: [], estatisticas: {} });

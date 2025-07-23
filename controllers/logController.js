@@ -1,3 +1,4 @@
+const db = require('../config/db');
 const Log = require('../models/logModel');
 
 exports.listarTodos = async (req, res) => {

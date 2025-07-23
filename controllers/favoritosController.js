@@ -1,3 +1,5 @@
+const db = require('../config/db');
+
 const Favoritos = require('../models/favoritosModel');
 
 exports.listar = async (req, res) => {
