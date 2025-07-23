@@ -81,7 +81,7 @@ carregarDashboard();
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
-const autenticarToken = require('../middleware/authMiddleware');
+const autenticarToken = require('../middleware/autenticarToken');
 const verificarAdmin = require('../middleware/adminMiddleware');
 
 // Dashboard do painel administrativo

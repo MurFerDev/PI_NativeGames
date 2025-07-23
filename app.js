@@ -111,6 +111,30 @@ app.get('/dashboard', (req, res) => {
     });
 });
 
+
+app.get('/editar', (req, res) => {
+    res.render('editar', { titulo: 'Editar Perfil' });
+});
+
+app.post('/editar', (req, res) => {
+    const { nome_usuario, email_usuario, senha_usuario, telefone_usuario, data_nascimento, genero_usuario } = req.body;
+    const sql = `
+        UPDATE tb_usuarios 
+        SET nome_usuario = ?, email_usuario = ?, senha_usuario = ?, telefone_usuario = ?, data_nascimento = ?, genero_usuario = ?
+        WHERE ID_usuario = ?
+    `;
+    const id_usuario = req.body.id_usuario; // Supondo que o ID do usuário esteja sendo enviado no corpo da requisição
+    conexao.query(sql, [nome_usuario, email_usuario, senha_usuario, telefone_usuario, data_nascimento, genero_usuario, id_usuario], function (erro) {
+        if (erro) {
+            console.error('Erro ao atualizar usuário:', erro);
+            res.status(500).send('Erro ao atualizar usuário');
+            return;
+        }
+        console.log('Usuário atualizado com sucesso!');
+        res.redirect('/'); // Redireciona para a página inicial após a atualização
+    });
+});
+
 // Rota para consultar usuários
 app.get('/admin/usuarios', (req, res) => {
     ;

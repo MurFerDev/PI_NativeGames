@@ -18,13 +18,13 @@ exports.register = async (req, res) => {
       if (err) return res.status(500).json({ error: 'Erro no servidor.' });
       if (results.length > 0) return res.status(409).json({ error: 'E-mail já cadastrado.' });
 
-      const hashedPassword = await bcrypt.hash(senha, 10);
+      const hashedPassword = await bcrypt.hash(senha_usuario, 10);
       db.query(
-        'INSERT INTO usuarios (nome_usuario, email_usuario, senha_usuario, apelido_usuario, tipo_usuario) VALUES (?, ?, ?, ?, ?)',
+        'INSERT INTO tb_usuarios (nome_usuario, email_usuario, senha_usuario, apelido_usuario, tipo_usuario) VALUES (?, ?, ?, ?, ?)',
         [nome, email, hashedPassword, apelido_usuario, tipo_usuario],
         (err, result) => {
           if (err) return res.status(500).json({ error: 'Erro ao cadastrar usuário.' });
-          res.status(201).json({ message: 'Usuário registrado com sucesso!', userId: result.insertId });
+          res.status(201).json({ message: 'Usuário registrado com sucesso!', ID_usuario: result.insertId });
         }
       );
     });
@@ -46,7 +46,7 @@ exports.login = (req, res) => {
     if (results.length === 0) return res.status(401).json({ error: 'Usuário não encontrado.' });
 
     const usuario = results[0];
-    const match = await bcrypt.compare(senha, usuario.senha);
+    const match = await bcrypt.compare(senha, usuario.senha_usuario);
     if (!match) return res.status(401).json({ error: 'Senha incorreta.' });
 
     const token = jwt.sign(
@@ -78,7 +78,7 @@ exports.login = (req, res) => {
 // Editar perfil do usuário
 exports.editar = async (req, res) => {
   const { nome, senha, apelido_usuario } = req.body;
-  const usuarioId = req.usuario.ID_usuario;
+  const ID_usuario = req.usuario.ID_usuario;
 
   if (!nome && !senha && !apelido_usuario) {
     return res.status(400).json({ error: 'Informe ao menos um campo para atualização.' });
@@ -97,12 +97,12 @@ exports.editar = async (req, res) => {
       valores.push(apelido_usuario);
     }
     if (senha) {
-      const hashedPassword = await bcrypt.hash(senha, 10);
+      const hashedPassword = await bcrypt.hash(senha_usuario, 10);
       campos.push('senha_usuario = ?');
       valores.push(hashedPassword);
     }
 
-    valores.push(usuarioId);
+    valores.push(ID_usuario);
 
     const sql = `UPDATE tb_usuarios SET ${campos.join(', ')} WHERE ID_usuario = ?`;
     db.query(sql, valores, (err, res) => {
