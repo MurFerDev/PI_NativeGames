@@ -1,8 +1,8 @@
-const db = require('../config/db');
+const db = require('../database/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'chave_padrao_secreta';
+const JWT_SECRET = process.env.JWT_SECRET || 'TI-Senac-2025';
 
 // Registrar novo usuário
 exports.register = async (req, res) => {
@@ -118,7 +118,7 @@ exports.editar = async (req, res) => {
 };
 
 // controllers/adminController.js
-// const db = require('../config/db');
+// const db = require('../database/db');
 
 // exports.getDashboardData = (req, res) => {
 //   const sql = `

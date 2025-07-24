@@ -1,6 +1,6 @@
 import {
   getAutenticado,  logout
-} from '../utils/api.js';
+} from './js/utils/api.js';
 
 document.querySelector('#logoutBtn').addEventListener('click', logout);
 
@@ -80,9 +80,9 @@ carregarDashboard();
 // Variáveis para a Dashboard do painel administrativo
 const express = require('express');
 const router = express.Router();
-const db = require('../config/db');
-const autenticarToken = require('../middleware/autenticarToken');
-const verificarAdmin = require('../middleware/adminMiddleware');
+const db = require('../database/db');
+const autenticarToken = require('./server/middleware/autenticarToken');
+const verificarAdmin = require('./server/middleware/adminMiddleware');
 
 // Dashboard do painel administrativo
 router.get('/dashboard', autenticarToken, verificarAdmin, (req, res) => {

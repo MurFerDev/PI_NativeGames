@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const db = require('../database/db');
 
 module.exports = {
   registrar: (id_usuario, acao, rota, metodo) => {

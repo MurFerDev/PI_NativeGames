@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const logController = require('../controllers/logController');
-const autenticarToken = require('../middlewares/autenticarToken');
-const verificarTipoUsuario = require('../middlewares/verificarTipoUsuario');
+const autenticarToken = require('./server/middlewares/autenticarToken');
+const verificarTipoUsuario = require('./server/middlewares/verificarTipoUsuario');
 
 // Logs de admin
 router.get('/', autenticarToken, verificarTipoUsuario(['admin']), logController.listarTodos);

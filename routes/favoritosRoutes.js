@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const favoritosController = require('../controllers/favoritosController');
-const autenticarToken = require('../middlewares/autenticarToken');
+const autenticarToken = require('./server/middlewares/autenticarToken');
 
 // Favoritar e listar
 router.get('/', autenticarToken, favoritosController.listar);

@@ -1,6 +1,6 @@
 import {
   post
-} from '../utils/api.js';
+} from './js/utils/api.js';
 
 document.querySelector('#registerForm').addEventListener('submit', async function (e) {
   e.preventDefault();

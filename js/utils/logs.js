@@ -1,6 +1,6 @@
 import {
   getAutenticado, logout
-} from '../utils/api.js';
+} from './js/utils/api.js';
 
 const verificacaoDiv = document.querySelector('#verificacao-acesso');
 const conteudoDiv = document.querySelector('#conteudo-principal');
@@ -22,7 +22,7 @@ if (!usuario || usuario.tipo_usuario !== 'admin') {
     carregarLogs();
 }
 */
-const db = require('../config/db');
+const db = require('../database/db');
 
 function registrarAcao(usuarioId, acao, rota, metodo) {
   const sql = `

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
-const autenticarToken = require('../middleware/autenticarToken'); // você deve ter criado isso
+const autenticarToken = require('./server/middleware/autenticarToken'); // você deve ter criado isso
 const verificarAdmin = adminController.verificarAdmin;
 
 router.use(autenticarToken);          // valida token

@@ -3,7 +3,7 @@ import {
   getAutenticado,
   putAutenticado,
   logout
-} from '../utils/api.js';
+} from './js/utils/api.js';
 
 document.querySelector('#nickname').textContent = usuario.apelido_usuario || usuario.nome_usuario || 'Usuário';
 

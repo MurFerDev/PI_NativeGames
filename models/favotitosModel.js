@@ -1,4 +1,4 @@
-const db = require('../config/db');
+const db = require('../database/db');
 
 module.exports = {
   listarFavoritosDoUsuario: (id_usuario) => {

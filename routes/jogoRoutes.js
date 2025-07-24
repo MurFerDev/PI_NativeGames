@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const jogoController = require('../controllers/jogoController');
-const autenticarToken = require('../middlewares/autenticarToken');
-const verificarTipoUsuario = require('../middlewares/verificarTipoUsuario');
+const autenticarToken = require('./server/middlewares/autenticarToken');
+const verificarTipoUsuario = require('./server/middlewares/verificarTipoUsuario');
 
 // Públicos
 router.get('/', jogoController.listarTodos);

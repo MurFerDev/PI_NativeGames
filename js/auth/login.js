@@ -3,7 +3,7 @@ import {
   post,
   getUsuario,
   logout
-} from '../utils/api.js';
+} from './js/utils/api.js';
 
 document.querySelector('#loginForm').addEventListener('submit', async function (e) {
     e.preventDefault();
