@@ -8,13 +8,16 @@ const { engine } = require('express-handlebars');
 const mysql = require('mysql2');
 const path = require('path');
 
+// Conexão com banco de dados
+const db = require('./database/db.js'); // Importa o módulo de conexão com o banco de dados
+
 // Configuração da conexão com o banco de dados MySQL
-const conexao = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'senac',
-    database: 'native_games_DB'
-});
+// const conexao = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'senac',
+//     database: 'native_games_DB'
+// });
 
 conexao.connect(function (erro) {
     if (erro) {
