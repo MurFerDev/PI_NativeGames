@@ -1,7 +1,14 @@
 {
   "name": "pi_nativegames",
   "version": "1.0.0",
-  "description": "Projeto Integrador para o curso Técnico em Informática do Senac Salto, SP.",
+  "description": "Plataforma web de jogos tradicionais - Native Games criada como Projeto Integrador para o curso Técnico em Informática (2025) do Senac Salto, SP.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "db:setup": "node setup.js",
+    "test": "echo \"Testes ainda não implementados\" && exit 0"
+  },
   "keywords": [
     "HTML",
     "CSS",
@@ -11,7 +18,6 @@
     "Express",
     "Handlebars",
     "Express-Handlebars",
-    "PhaserJS",
     "MySQL",
     "Games",
     "Native Games",
@@ -24,24 +30,17 @@
     "Sara Vanessa Santos Paiva",
     "Sara Paiva"
   ],
-  "homepage": "https://github.com/MurFerDev/Projeto-Native-Games#readme",
+  "homepage": "https://github.com/MurFerDev/PI_NativeGames#readme",
   "bugs": {
-    "url": "https://github.com/MurFerDev/Projeto-Native-Games/issues"
+    "url": "https://github.com/MurFerDev/PI_NativeGames/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MurFerDev/Projeto-Native-Games.git"
+    "url": "git+https://github.com/MurFerDev/PI_NativeGames.git"
   },
-  "license": "ISC",
-  "author": "Murilo Ferreira Santos, Sara Vanessa Santos Paiva",
+  "author": "Murilo Ferreira Santos e Sara Vanessa Santos Paiva",
+  "license": "MIT",
   "type": "commonjs",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "setup": "node db/setup.js"
-  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "bootstrap": "^5.3.6",
@@ -51,11 +50,10 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
-    "express-session": "^1.18.1",
-    "jquery": "^3.7.1",
+    "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.14.1",
-    "three": "^0.177.0"
+    "method-override": "^3.0.0",
+    "mysql2": "^3.14.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",

@@ -147,7 +147,7 @@ Essa tabela registra ações dentro do sistema (edição, jogo favorito…) */
 CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
   ID_log_acao_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT NOT NULL,
-  fj_jogo INT,
+  fk_jogo INT,
   acao ENUM('login', 'logout', 'cadastro', 'edicao_perfil', 'adicionar_favorito', 'remover_favorito', 'jogar', 'avaliar_jogo', 'comentar_jogo', 'reportar_bug', 'alterar_senha') NOT NULL,
   descricao_acao TEXT,
   rota_afetada VARCHAR(255),
