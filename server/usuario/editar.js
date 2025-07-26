@@ -134,7 +134,7 @@ form.addEventListener('submit', async (e) => {
   if (senha) dados.senha = senha;
 
   try {
-    await postAutenticado('http://localhost:3306/api/usuario/editar', dados);
+    await postAutenticado('http://localhost:8080/....api/usuario/editar', dados);
     alert('Perfil atualizado com sucesso!');
     window.location.href = '/dashboard';
   } catch (err) {

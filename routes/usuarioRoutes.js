@@ -9,7 +9,7 @@ router.post('/registrar', usuarioController.registrar);
 router.post('/login', usuarioController.login);
 
 // Perfil
-//router.get('/me', autenticarToken, usuarioController.perfil);
+router.get('/me', autenticarToken, usuarioController.perfil);
 router.put('/editar', autenticarToken, usuarioController.editar);
 router.post('/logout', autenticarToken, usuarioController.logout);
 

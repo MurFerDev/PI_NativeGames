@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js",
-    "db:setup": "node setup.js",
+    "setup": "node ./db/setup.js",
     "test": "echo \"Testes ainda não implementados\" && exit 0"
   },
   "keywords": [
@@ -53,7 +53,9 @@
     "express-session": "^1.18.2",
     "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
-    "mysql2": "^3.14.1"
+    "morgan": "^1.10.1",
+    "mysql2": "^3.14.2",
+    "routes": "^2.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10",

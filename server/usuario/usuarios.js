@@ -15,7 +15,7 @@ document.getElementById('logoutBtn').addEventListener('click', logout);
 
 async function carregarUsuarios() {
   try {
-    const res = await getAutenticado('http://localhost:3306/api/admin/usuarios');
+    const res = await getAutenticado('http://localhost:8080/....api/admin/usuarios');
     const tbody = document.getElementById('tabelaUsuarios');
     tbody.innerHTML = '';
 
@@ -61,7 +61,7 @@ function adicionarListeners() {
       const id = btn.getAttribute('data-del');
       if (confirm('Tem certeza que deseja excluir este usuário?')) {
         try {
-          await fetch(`http://localhost:3306/api/admin/usuarios/${id}`, {
+          await fetch(`http://localhost:8080/....api/admin/usuarios/${id}`, {
             method: 'DELETE',
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           });
@@ -80,7 +80,7 @@ function adicionarListeners() {
       const id = select.getAttribute('data-id');
       const novoTipo = select.value;
       try {
-        await postAutenticado(`http://localhost:3306/api/admin/usuarios/tipo`, { ID_usuario: id, tipo_usuario: novoTipo });
+        await postAutenticado(`http://localhost:8080/....api/admin/usuarios/tipo`, { ID_usuario: id, tipo_usuario: novoTipo });
         alert('Tipo de usuário atualizado!');
       } catch (e) {
         alert('Erro ao atualizar tipo.');

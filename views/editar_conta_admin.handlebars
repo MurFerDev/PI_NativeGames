@@ -5,7 +5,7 @@
         <div class="form-group text-center">
             <label for="fotoPerfil">Foto de Perfil</label>
             <div>
-                <img id="previewFoto" src="/static/images/user-default-img.png" alt="Foto de Perfil"
+                <img id="previewFoto" src="/public/img/user-default-img.png" alt="Foto de Perfil"
                     class="rounded-circle mb-2" width="120" height="120" style="object-fit: cover;" />
             </div>
             <input type="file" class="form-control-file" id="fotoPerfil" accept="image/*" />
@@ -22,12 +22,12 @@
 
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" disabled />
+            <input type="email" class="form-control" id="email" value="{{usuario.email_usuario}}" disabled />
         </div>
 
         <div class="form-group">
             <label for="telefone">Telefone</label>
-            <input type="tel" class="form-control" id="telefone" placeholder="(11) 91234-5678" maxlength="15" />
+            <input type="tel" class="form-control" id="telefone" value="{{usuario.telefone_usuario}}" placeholder="(11) 91234-5678" maxlength="15" />
         </div>
 
         <div class="form-group">

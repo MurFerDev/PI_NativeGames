@@ -6,7 +6,7 @@ module.exports = {
     return db.promise().execute(sql);
   },
 
-  buscarPorId: (id) => {
+  findById: (id) => {
     const sql = `SELECT * FROM tb_jogos WHERE ID_jogo = ?`;
     return db.promise().execute(sql, [id]);
   },

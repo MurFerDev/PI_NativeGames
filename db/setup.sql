@@ -1,7 +1,7 @@
-CREATE DATABASE IF NOT EXISTS native_games_DB
+CREATE DATABASE IF NOT EXISTS native_games_db
     DEFAULT CHARACTER SET = 'utf8mb4';
 
-USE native_games_DB;
+USE native_games_db;
 
 CREATE TABLE tb_jogos (
     ID_jogo INT AUTO_INCREMENT PRIMARY KEY,
@@ -110,7 +110,7 @@ CREATE TABLE tb_comentarios (
   ID_comentario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT NOT NULL,
   fk_jogo INT NOT NULL,
-  texto TEXT NOT NULL,
+  texto_comentario TEXT NOT NULL,
   criado_em DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE CASCADE,
   FOREIGN KEY (fk_jogo) REFERENCES tb_jogos(ID_jogo) ON DELETE CASCADE
@@ -131,28 +131,27 @@ CREATE TABLE tb_avaliacoes (
 /* Criando uma Tabela de Log de acesso dos usuários.
 Essa tabela registra cada tentativa de login (sucesso ou falha) */
 CREATE TABLE IF NOT EXISTS tb_log_acesso_usuarios (
-  ID_log_acesso_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
+  ID_log_acesso_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT,
   fk_jogo INT,
   email_tentado VARCHAR(255),
   status_acesso ENUM('successo', 'falha') NOT NULL,
   ip_origem VARCHAR(45),
   browser TEXT,
-  data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+  data_acesso DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE SET NULL
 );
 
 /* Criando uma Tabela de Log de registro de ações dos usuários.
 Essa tabela registra ações dentro do sistema (edição, jogo favorito…) */
-CREATE TABLE IF NOT EXISTS tb_log_acoes_usuarios (
-  ID_log_acao_de_usuario INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS tb_log_acao_usuarios (
+  ID_log_acao_usuario INT AUTO_INCREMENT PRIMARY KEY,
   fk_usuario INT NOT NULL,
   fk_jogo INT,
   acao ENUM('login', 'logout', 'cadastro', 'edicao_perfil', 'adicionar_favorito', 'remover_favorito', 'jogar', 'avaliar_jogo', 'comentar_jogo', 'reportar_bug', 'alterar_senha') NOT NULL,
-  descricao_acao TEXT,
   rota_afetada VARCHAR(255),
   metodo_http VARCHAR(10),
-  data_hora DATETIME DEFAULT CURRENT_TIMESTAMP,
+  data_acao DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fk_usuario) REFERENCES tb_usuarios(ID_usuario) ON DELETE CASCADE
 );
 

@@ -5,31 +5,31 @@
         <div class="form-group text-center">
             <label for="fotoPerfil">Foto de Perfil</label>
             <div>
-                <img id="previewFoto" src="/static/images/user-default-img.png" alt="Foto de Perfil"
+                <img id="previewFoto" src="/public/img/user-default-img.png" alt="Foto de Perfil"
                     class="rounded-circle mb-6" width="50" height="50" style="object-fit: cover;" />
             </div>
             <input type="file" class="form-control-file" id="fotoPerfil" accept="image/*" />
         </div>
         <div class="form-group">
             <label for="nome">Nome completo</label>
-            <input type="text" class="form-control" id="nome" required placeholder="{{usuario.nome_usuario}}"/>
+            <input type="text" class="form-control" id="nome" required value="{{usuario.nome_usuario}}"/>
         </div>
         <div class="form-group">
             <label for="apelido">Apelido (nickname)</label>
-            <input type="text" class="form-control" id="apelido" required placeholder="{{usuario.apelido_usuario}}" />
+            <input type="text" class="form-control" id="apelido" required value="{{usuario.apelido_usuario}}" />
         </div>
         <div class="form-group">
             <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" disabled/ placeholder="{{usuario.email_usuario}}" />
+            <input type="email" class="form-control" id="email" disabled/ value="{{usuario.email_usuario}}" />
         </div>
         <div class="form-group">
             <label for="telefone">Telefone</label>
-            <input type="tel" class="form-control" id="telefone" placeholder="{{usuario.telefone_usuario}}" maxlength="15" />
+            <input type="tel" class="form-control" id="telefone" value="{{usuario.telefone_usuario}}" maxlength="15" />
         </div>
         <div class="form-group">
             <label for="senha">Nova senha (opcional)</label>
             <div class="input-group">
-                <input type="password" class="form-control" id="senha" placeholder="{{usuario.senha_usuario}}" />
+                <input type="password" class="form-control" id="senha" value="{{usuario.senha_usuario}}" />
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" id="toggleSenha">👁️</button>
                 </div>

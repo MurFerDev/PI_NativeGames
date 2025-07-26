@@ -16,12 +16,12 @@ module.exports = {
     ]);
   },
 
-  buscarPorEmail: (email) => {
+  findByEmail: (email) => {
     const sql = `SELECT * FROM tb_usuarios WHERE email_usuario = ?`;
     return db.promise().execute(sql, [email]);
   },
 
-  buscarPorId: (id) => {
+  findById: (id) => {
     const sql = `SELECT ID_usuario, nome_usuario, email_usuario, apelido_usuario, tipo_usuario, status_usuario FROM tb_usuarios WHERE ID_usuario = ?`;
     return db.promise().execute(sql, [id]);
   },

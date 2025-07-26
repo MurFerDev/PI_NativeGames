@@ -1,16 +1,32 @@
 const fs = require('fs');
 const path = require('path');
-const db = require('../database/db');
+const mysql = require('mysql2');
 require('dotenv').config();
 
-async function setupDatabase() {
-  try {
-    const sqlScript = fs.readFileSync(path.join(__dirname, 'setup.sql'), 'utf8');
-    await db.query(sqlScript);
-    console.log('✅ Banco de dados inicializado com sucesso.');
-  } catch (err) {
-    console.error('❌ Erro ao executar o script de setup.sql:', err);
-  }
-}
+const sql = fs.readFileSync(path.join(__dirname, 'setup.sql'), 'utf8');
 
-setupDatabase();
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  multipleStatements: true
+});
+
+connection.connect(err => {
+  if (err) {
+    console.error('Erro ao conectar no MySQL:', err);
+    return;
+  }
+
+  console.log('✅ Conectado ao MySQL');
+
+  connection.query(sql, (err, results) => {
+    if (err) {
+      console.error('❌ Erro ao executar script SQL:', err.message);
+    } else {
+      console.log('✅ Script SQL executado com sucesso!');
+    }
+    connection.end();
+  });
+});

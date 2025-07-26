@@ -8,7 +8,7 @@ const Hub = require('../models/hubModel');
 
 exports.estatisticasUsuario = async (req, res) => {
   try {
-    const id = req.usuario.tipo_usuario === 'admin' && req.query.id ? req.query.id : req.usuario.id;
+    const id = req.usuario.tipo_usuario === 'admin' && req.query.ID_usuario ? req.query.ID_usuario : req.usuario.ID_usuario;
     const dados = await Hub.estatisticas(id);
     res.json(dados);
   } catch (err) {

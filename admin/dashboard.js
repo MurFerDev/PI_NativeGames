@@ -9,7 +9,7 @@ document.querySelector('#logoutBtn').addEventListener('click', logout);
 
 async function carregarDashboard() {
     try {
-        const res = await getAutenticado('/api/admin/dashboard');
+        const res = await getAutenticado('http://localhost:8080/....api/admin/dashboard');
 
         document.querySelector('#totalJogos').textContent = res.totalJogos[0].total;
         document.querySelector('#totalUsuarios').textContent = res.totalUsuarios[0].total;
@@ -81,7 +81,7 @@ carregarDashboard();
 const express = require('express');
 const router = express.Router();
 const db = require('../database/db');
-const autenticarToken = require('./server/middleware/autenticarToken');
+const autenticarToken = require('../server/middleware/autenticarToken');
 const verificarAdmin = require('./server/middleware/adminMiddleware');
 
 // Dashboard do painel administrativo
