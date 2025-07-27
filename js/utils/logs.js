@@ -25,8 +25,8 @@ if (!usuario || usuario.tipo_usuario !== 'admin') {
 async function carregarLogs() {
   try {
     // Ajuste as URLs conforme seu backend
-    const acessos = await getAutenticado('http://localhost:8080/api/logs/acessos');
-    const acoes = await getAutenticado('http://localhost:8080/api/logs/acoes');
+    const acessos = await getAutenticado('/api/logs/acessos');
+    const acoes = await getAutenticado('/api/logs/acoes');
 
     const tbodyAcessos = document.querySelector('#tabelaAcessos');
     tbodyAcessos.innerHTML = '';

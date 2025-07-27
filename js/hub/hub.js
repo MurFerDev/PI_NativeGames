@@ -21,7 +21,7 @@ const url = idParam && usuario.tipo_usuario === 'admin' ? `/api/hub/dados?id=${i
 // Buscar dados do hub
 async function carregarHub() {
   try {
-    const data = await getAutenticado('http://localhost:8080/....api/hub/dados');
+    const data = await getAutenticado('/api/hub/dados');
 
     const container = document.querySelector('#jogosFavoritos');
     container.innerHTML = '';

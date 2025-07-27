@@ -6,7 +6,7 @@ module.exports = {
     return db.promise().execute(sql);
   },
 
-  findById: (id) => {
+  obterPorId: (id) => {
     const sql = `SELECT * FROM tb_jogos WHERE ID_jogo = ?`;
     return db.promise().execute(sql, [id]);
   },
@@ -31,7 +31,7 @@ module.exports = {
     return db.promise().execute(sql, valores);
   },
 
-  remover: (id) => {
+  excluir: (id) => {
     const sql = `DELETE FROM tb_jogos WHERE ID_jogo = ?`;
     return db.promise().execute(sql, [id]);
   }

@@ -1,8 +1,57 @@
 const db = require('../database/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const usuarioModel = require('../models/usuarioModel');
 const JWT_SECRET = process.env.JWT_SECRET;
+
+exports.realizarLogin = async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    const [rows] = await usuarioModel.buscarPorEmail(email);
+    const usuario = rows[0];
+
+    if (!usuario) {
+      return res.status(401).json({ error: 'Usuário não encontrado' });
+    }
+
+    const senhaConfere = await bcrypt.compare(senha, usuario.senha_usuario);
+    if (!senhaConfere) {
+      return res.status(401).json({ error: 'Senha incorreta' });
+    }
+
+    const token = jwt.sign(
+      { id: usuario.ID_usuario, tipo: usuario.tipo_usuario },
+      process.env.JWT_SECRET,
+      { expiresIn: '2h' }
+    );
+
+    delete usuario.senha_usuario;
+
+    res.json({ token, usuario });
+
+  } catch (err) {
+    console.error('Erro no login:', err);
+    res.status(500).json({ error: 'Erro interno ao realizar login' });
+  }
+};
+
+
+// Verificar se o usuário está autenticado
+exports.autenticarUsuario = (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ error: 'Token não fornecido.' });
+  }
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ error: 'Token inválido.' });
+    }
+    req.usuario = decoded;
+    next();
+  });
+};
+
 
 // Registrar novo usuário
 exports.registrar = async (req, res) => {
@@ -33,47 +82,6 @@ exports.registrar = async (req, res) => {
   }
 };
 
-// Login do usuário
-exports.login = (req, res) => {
-  const { email, senha } = req.body;
-
-  if (!email || !senha) {
-    return res.status(400).json({ error: 'E-mail e senha são obrigatórios.' });
-  }
-
-  db.query('SELECT * FROM tb_usuarios WHERE email_usuario = ?', [email], async (err, results) => {
-    if (err) return res.status(500).json({ error: 'Erro ao buscar usuário.' });
-    if (results.length === 0) return res.status(401).json({ error: 'Usuário não encontrado.' });
-
-    const usuario = results[0];
-    const match = await bcrypt.compare(senha, usuario.senha_usuario);
-    if (!match) return res.status(401).json({ error: 'Senha incorreta.' });
-
-    const token = jwt.sign(
-      {
-        ID_usuario: usuario.ID_usuario,
-        nome_usuario: usuario.nome_usuario,
-        email_usuario: usuario.email_usuario,
-        apelido_usuario: usuario.apelido_usuario,
-        tipo_usuario: usuario.tipo_usuario
-      },
-      JWT_SECRET,
-      { expiresIn: '2h' }
-    );
-
-    res.status(200).json({
-      message: 'Login bem-sucedido',
-      token,
-      usuario: {
-        ID_usuario: usuario.ID_usuario,
-        nome_usuario: usuario.nome_usuario,
-        apelido_usuario: usuario.apelido_usuario,
-        tipo_usuario: usuario.tipo_usuario,
-        email_usuario: usuario.email_usuario
-      }
-    });
-  });
-};
 
 // Perfil do usuário autenticado
 exports.perfil = async (req, res) => {

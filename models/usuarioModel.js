@@ -1,27 +1,35 @@
 const db = require('../database/db');
+const bcrypt = require('bcrypt');
+
 
 module.exports = {
-  cadastrar: (userData) => {
+  registrar: async (userData) => {
+     try {
+      const hashedPassword = await bcrypt.hash(userData.senha, 10);
     const sql = `
       INSERT INTO tb_usuarios (nome_usuario, email_usuario, senha_usuario, apelido_usuario, tipo_usuario, status_usuario)
       VALUES (?, ?, ?, ?, ?, ?)
     `;
-    return db.promise().execute(sql, [
+   
+    return await db.promise().execute(sql, [
       userData.nome,
       userData.email,
-      userData.senha,
+      hashedPassword,
       userData.apelido_usuario,
       userData.tipo_usuario,
       userData.status || 'ativo'
     ]);
+    } catch (error) {
+      throw new Error('Erro ao registrar usuário: ' + error.message);
+    }
   },
 
-  findByEmail: (email) => {
+  buscarPorEmail: (email) => {
     const sql = `SELECT * FROM tb_usuarios WHERE email_usuario = ?`;
     return db.promise().execute(sql, [email]);
   },
 
-  findById: (id) => {
+  perfilPorId: (id) => {
     const sql = `SELECT ID_usuario, nome_usuario, email_usuario, apelido_usuario, tipo_usuario, status_usuario FROM tb_usuarios WHERE ID_usuario = ?`;
     return db.promise().execute(sql, [id]);
   },

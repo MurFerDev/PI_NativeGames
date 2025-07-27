@@ -1,8 +1,7 @@
-
 import {
-  post,
-  getUsuario,
-  logout
+    post,
+    getUsuario,
+    logout
 } from './js/utils/api.js';
 
 document.querySelector('#loginForm').addEventListener('submit', async function (e) {
@@ -11,17 +10,17 @@ document.querySelector('#loginForm').addEventListener('submit', async function (
     const email = document.querySelector('#email').value;
     const senha = document.querySelector('#password').value;
 
-    try {
-        const response = await post('/api/usuarios/login', data);
+    const data = { email, senha };
 
-        const data = await response.json();
+    try {
+        const resposta = await post('/api/usuarios/login', data);
 
         if (resposta.token) {
+            // Armazena token e dados do usuário
+            localStorage.setItem('token', resposta.token);
+            localStorage.setItem('usuario', JSON.stringify(resposta.usuario));
 
-            // Armazena o token no localStorage
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('usuario', JSON.stringify(data.usuario));
-
+            // Redireciona com base no tipo do usuário
             if (resposta.usuario.tipo_usuario === 'admin') {
                 window.location.href = '/dashboard';
             } else {
@@ -35,6 +34,4 @@ document.querySelector('#loginForm').addEventListener('submit', async function (
         console.error('Erro ao fazer login:', err);
         alert('Erro ao se conectar com o servidor.');
     }
-
-    registrarAcao(id_usuario, 'Login realizado com sucesso', '/api/usuario/login', 'POST');
 });

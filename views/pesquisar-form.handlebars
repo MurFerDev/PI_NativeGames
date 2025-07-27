@@ -6,7 +6,16 @@
         <button class="btn btn-primary" type="submit">Pesquisar</button>
     </div>
 </form>
-{{! Exibir resultados da pesquisa, se houver }}
+
+{{#if pesquisa_realizada}}
+    <h2>Resultados da Pesquisa</h2>
+    <p>Foram encontrados {{usuarios.length}} usuários com o termo "{{termo_pesquisa}}".</p>
+{{else}}
+    <h2>Nenhum resultado encontrado</h2>
+    <p>Tente alterar os critérios de pesquisa.</p>
+{{/if}}
+
+<!-- Exibir lista de usuários encontrados -->
 {{#if usuarios.length}}
     <h2>Resultados da Pesquisa</h2>
     <ul class="list-group">

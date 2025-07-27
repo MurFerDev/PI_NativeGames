@@ -1,3 +1,5 @@
+/* CUSTOMIZAÇÃO DE ESTILO PARA A NAVBAR */
+
 .press-start-2p-regular {
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
@@ -45,3 +47,33 @@
   margin-right: 2rem;
 }
 
+
+/* CUSTOMIZAÇÃO DE ESTILO PARA A PÁGINA DE LOGIN */
+
+.login-container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .login-box {
+      background: #fff;
+      color: #333;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .btn-google {
+      background-color: #db4437;
+      color: #fff;
+    }
+
+    .btn-facebook {
+      background-color: #3b5998;
+      color: #fff;
+    }

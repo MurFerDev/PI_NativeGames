@@ -135,7 +135,7 @@ CREATE TABLE IF NOT EXISTS tb_log_acesso_usuarios (
   fk_usuario INT,
   fk_jogo INT,
   email_tentado VARCHAR(255),
-  status_acesso ENUM('successo', 'falha') NOT NULL,
+  status_acesso ENUM('sucesso', 'falha') NOT NULL,
   ip_origem VARCHAR(45),
   browser TEXT,
   data_acesso DATETIME DEFAULT CURRENT_TIMESTAMP,

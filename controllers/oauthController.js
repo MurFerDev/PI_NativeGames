@@ -1,4 +1,4 @@
-const db = require('../database/db');
+'use strict';
 
 exports.loginGoogle = (req, res) => {
   res.status(200).json({ message: 'Login com Google simulado' });
