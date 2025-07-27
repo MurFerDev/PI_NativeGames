@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.router();
 const adminController = require('../controllers/adminController');
 const autenticarToken = require('../server/middlewares/autenticarToken');
 
@@ -12,5 +12,8 @@ router.get('/usuarios', adminController.listarUsuarios);
 router.put('/usuarios/:id', adminController.atualizarUsuario);
 router.post('/usuarios', adminController.registrarUsuarioAdmin);
 router.delete('/usuarios/:id', adminController.removerUsuario);
+router.post('cadastro', adminController.cadastrarJogo);
+router.put('/editar/:id', adminController.editarJogo);
+router.delete('/excluir/:id', adminController.excluirJogo);
 
 module.exports = router;

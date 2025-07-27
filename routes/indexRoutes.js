@@ -6,4 +6,7 @@ router.get('/', (req, res) => {
   res.render('index', { layout: 'main' });
 });
 
-module.exports = router;
+// Sobre
+router.get('/sobre', (req, res) => {
+  res.render('sobre', { layout: 'main' });
+});

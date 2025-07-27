@@ -3,22 +3,27 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const exphbs = require('express-handlebars');
+const helmet = require('helmet');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const cors = require('cors');
+
 
 // Middlewares globais
-app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
+app.use(helmet());
+app.use(cors());
 
 // Configuração do Handlebars
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
@@ -35,7 +40,7 @@ app.use('/auth', require('./routes/oauthRoutes'));
 app.use('/usuarios', require('./routes/usuarioRoutes'));
 app.use('/hub', require('./routes/hubRoutes'));
 app.use('/favoritos', require('./routes/favoritosRoutes'));
-app.use('/admin', require('./routes/adminRoutes'));
+app.use('/admin', require('./admin/adminRoutes'));
 app.use('/logs', require('./routes/logRoutes'));
 
 
