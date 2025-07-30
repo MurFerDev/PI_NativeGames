@@ -8,15 +8,15 @@ if (!admin || admin.tipo_usuario !== 'admin') {
   logout();
   window.location.href = '/';
 } else {
-  document.getElementById('adminNome').textContent = admin.nome_usuario;
+  document.querySelector('adminNome').textContent = admin.nome_usuario;
 }
 
-document.getElementById('logoutBtn').addEventListener('click', logout);
+document.querySelector('logoutBtn').addEventListener('click', logout);
 
 async function carregarUsuarios() {
   try {
-    const res = await getAutenticado('http://localhost:8080/....api/admin/usuarios');
-    const tbody = document.getElementById('tabelaUsuarios');
+    const res = await getAutenticado('api/admin/usuarios');
+    const tbody = document.querySelector('tabelaUsuarios');
     tbody.innerHTML = '';
 
     res.usuarios.forEach(usuario => {
@@ -61,7 +61,7 @@ function adicionarListeners() {
       const id = btn.getAttribute('data-del');
       if (confirm('Tem certeza que deseja excluir este usuário?')) {
         try {
-          await fetch(`http://localhost:8080/....api/admin/usuarios/${id}`, {
+          await fetch(`api/admin/usuarios/${id}`, {
             method: 'DELETE',
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           });

@@ -48,5 +48,3 @@ router.get('/tafl', (req, res) => {
 });
 
 module.exports = router;
-
-module.exports = router;

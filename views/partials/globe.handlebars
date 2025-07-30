@@ -64,7 +64,7 @@
     }];
 
     // Criação do globo
-    const world = new Globe(document.getElementById('globeViz'), { animateIn: false })
+    const world = new Globe(document.querySelector('globeViz'), { animateIn: false })
         .globeImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-blue-marble.jpg')
         .bumpImageUrl('//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png')
         .htmlElementsData(locals) // Dados dos locais
