@@ -80,7 +80,7 @@ function adicionarListeners() {
       const id = select.getAttribute('data-id');
       const novoTipo = select.value;
       try {
-        await postAutenticado(`http://localhost:8080/....api/admin/usuarios/tipo`, { ID_usuario: id, tipo_usuario: novoTipo });
+        await postAutenticado(`api/admin/usuarios/tipo`, { ID_usuario: id, tipo_usuario: novoTipo });
         alert('Tipo de usuário atualizado!');
       } catch (e) {
         alert('Erro ao atualizar tipo.');

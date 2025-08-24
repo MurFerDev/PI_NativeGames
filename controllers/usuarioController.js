@@ -21,7 +21,7 @@ exports.realizarLogin = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { id: usuario.ID_usuario, tipo: usuario.tipo_usuario },
+      { ID_usuario: usuario.ID_usuario, tipo_usuario: usuario.tipo_usuario },
       process.env.JWT_SECRET,
       { expiresIn: '2h' }
     );
@@ -31,25 +31,12 @@ exports.realizarLogin = async (req, res) => {
     res.json({ token, usuario });
 
   } catch (err) {
-    console.error('Erro no login:', err);
+    console.error('Erro ao realizar login:', err);
+    if (err.code === 'ER_BAD_FIELD_ERROR') {
+      return res.status(400).json({ error: 'Campo inválido' });
+    }
     res.status(500).json({ error: 'Erro interno ao realizar login' });
   }
-};
-
-
-// Verificar se o usuário está autenticado
-exports.autenticarUsuario = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1];
-  if (!token) {
-    return res.status(401).json({ error: 'Token não fornecido.' });
-  }
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ error: 'Token inválido.' });
-    }
-    req.usuario = decoded;
-    next();
-  });
 };
 
 
@@ -78,6 +65,10 @@ exports.registrar = async (req, res) => {
 
     res.status(201).json({ message: 'Usuário registrado com sucesso!', ID_usuario: insertResult.insertId });
   } catch (error) {
+    console.error('Erro ao registrar usuário:', error);
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ error: 'E-mail já cadastrado.' });
+    }
     res.status(500).json({ error: 'Erro interno do servidor.' });
   }
 };
@@ -102,6 +93,10 @@ exports.perfil = async (req, res) => {
 
     res.status(200).json(rows[0]);
   } catch (error) {
+    console.error('Erro ao buscar perfil do usuário:', error);
+    if (error.code === 'ER_BAD_FIELD_ERROR') {
+      return res.status(400).json({ error: 'Campo inválido' });
+    }
     res.status(500).json({ error: 'Erro ao buscar perfil do usuário.' });
   }
 };
@@ -136,7 +131,7 @@ exports.editar = async (req, res) => {
     valores.push(ID_usuario);
 
     const sql = `UPDATE tb_usuarios SET ${campos.join(', ')} WHERE ID_usuario = ?`;
-    db.query(sql, valores, (err, res) => {
+    db.query(sql, valores, (err, result) => {
       if (err) {
         console.error('Erro ao atualizar usuário:', err);
         return res.status(500).json({ error: 'Erro ao atualizar o perfil.' });
@@ -144,6 +139,10 @@ exports.editar = async (req, res) => {
       res.status(200).json({ message: 'Perfil atualizado com sucesso.' });
     });
   } catch (error) {
+    console.error('Erro ao editar perfil do usuário:', error);
+    if (error.code === 'ER_BAD_FIELD_ERROR') {
+      return res.status(400).json({ error: 'Campo inválido' });
+    }
     res.status(500).json({ error: 'Erro interno do servidor.' });
   }
 };
@@ -178,6 +177,10 @@ exports.perfilPorId = async (req, res) => {
     }
     res.status(200).json(rows[0]);
   } catch (error) {
+    console.error('Erro ao buscar usuário:', error);
+    if (error.code === 'ER_BAD_FIELD_ERROR') {
+      return res.status(400).json({ error: 'Campo inválido' });
+    }
     res.status(500).json({ error: 'Erro ao buscar usuário.' });
   }
 };
@@ -190,6 +193,10 @@ exports.listarUsuarios = async (req, res) => {
     );
     res.status(200).json(rows);
   } catch (error) {
+    console.error('Erro ao listar usuários:', error);
+    if (error.code === 'ER_BAD_FIELD_ERROR') {
+      return res.status(400).json({ error: 'Campo inválido' });
+    }
     res.status(500).json({ error: 'Erro ao listar usuários.' });
   }
 };
@@ -207,6 +214,10 @@ exports.removerUsuario = async (req, res) => {
     }
     res.status(200).json({ message: 'Usuário removido com sucesso.' });
   } catch (error) {
+    console.error('Erro ao remover usuário:', error);
+    if (error.code === 'ER_BAD_FIELD_ERROR') {
+      return res.status(400).json({ error: 'Campo inválido' });
+    }
     res.status(500).json({ error: 'Erro ao remover usuário.' });
   }
 };
@@ -228,6 +239,10 @@ exports.atualizarTipoUsuario = async (req, res) => {
     }
     res.status(200).json({ message: 'Tipo de usuário atualizado com sucesso.' });
   } catch (error) {
+    console.error('Erro ao atualizar tipo de usuário:', error);
+    if (error.code === 'ER_BAD_FIELD_ERROR') {
+      return res.status(400).json({ error: 'Campo inválido' });
+    }
     res.status(500).json({ error: 'Erro ao atualizar tipo de usuário.' });
   }
 };

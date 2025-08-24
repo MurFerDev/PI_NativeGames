@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const adminController = require('../controllers/adminController');
 const logController = require('../controllers/logController');
 const autenticarToken = require('../server/middlewares/autenticarToken');
 const verificarTipoUsuario = require('../server/middlewares/verificarTipoUsuario');

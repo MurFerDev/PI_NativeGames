@@ -36,7 +36,7 @@ module.exports = {
 
   atualizar: (id, campos) => {
     const sets = Object.keys(campos).map(c => `${c} = ?`).join(', ');
-    const valores = [...Object.values(campos), id];
+    const valores = [Object.values(campos), id];
     const sql = `UPDATE tb_usuarios SET ${sets} WHERE ID_usuario = ?`;
     return db.promise().execute(sql, valores);
   },

@@ -32,7 +32,7 @@ export function logout() {
  * @returns {object}
  */
 function getHeaders(autenticado = false, extras = {}) {
-  const headers = { 'Content-Type': 'application/json', ...extras };
+  const headers = { 'Content-Type': 'application/json', extras };
   if (autenticado) {
     const token = getToken();
     if (token) headers['Authorization'] = `Bearer ${token}`;

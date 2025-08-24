@@ -10,3 +10,5 @@ router.get('/', (req, res) => {
 router.get('/sobre', (req, res) => {
   res.render('sobre', { layout: 'main' });
 });
+
+module.exports = router;

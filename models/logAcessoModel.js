@@ -1,4 +1,4 @@
-const LogAcessoModel = require('../models/LogAcessoModel');
+const LogAcessoModel = require('./models/LogAcessoModel');
 
 // Listar todos os logs de acesso
 exports.listarTodos = async (req, res) => {

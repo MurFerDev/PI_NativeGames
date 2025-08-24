@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usuarioController = require('../controllers/usuarioController');
+const favoritosController = require('../controllers/favoritosController');
 const autenticarToken = require('../server/middlewares/autenticarToken');
 const verificarTipoUsuario = require('../server/middlewares/verificarTipoUsuario');
 
@@ -12,9 +13,11 @@ router.post('/login', usuarioController.realizarLogin);
 router.get('/hub', autenticarToken, usuarioController.perfil);
 router.put('/editar', autenticarToken, usuarioController.editar);
 router.post('/logout', autenticarToken, usuarioController.logout);
-router.get('favoritos', autenticarToken, usuarioController.favoritos);
-router.post('/favoritos', autenticarToken, usuarioController.adicionarFavorito);
-router.delete('/favoritos/:ID', autenticarToken, usuarioController.removerFavorito);
+
+// Favoritos
+router.get('/favoritos', autenticarToken, favoritosController.listar);
+router.post('/favoritos', autenticarToken, favoritosController.adicionar);
+router.delete('/favoritos/:ID_jogo', autenticarToken, favoritosController.remover);
 
 // Admin acessa qualquer usuário
 router.get('/:ID', autenticarToken, verificarTipoUsuario(['admin']), usuarioController.perfilPorId);

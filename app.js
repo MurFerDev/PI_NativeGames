@@ -41,7 +41,7 @@ app.use('/usuarios', require('./routes/usuarioRoutes'));
 app.use('/hub', require('./routes/hubRoutes'));
 app.use('/favoritos', require('./routes/favoritosRoutes'));
 app.use('/admin', require('./admin/adminRoutes'));
-app.use('/logs', require('./routes/logRoutes'));
+app.use('/logs', require('./admin/logRoutes'));
 
 
 // Página não encontrada

@@ -1,6 +1,11 @@
+import router from '../../routes/indexRoutes.js';
 import {
   post
 } from './js/utils/api.js';
+
+router.get('/register', (req, res) => {
+  res.render('register', { layout: 'main' });
+});
 
 document.querySelector('#registerForm').addEventListener('submit', async function (e) {
   e.preventDefault();

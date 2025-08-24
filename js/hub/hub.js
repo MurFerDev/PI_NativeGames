@@ -67,7 +67,7 @@ document.querySelector('#editForm').addEventListener('submit', async (e) => {
     alert('Perfil atualizado com sucesso!');
 
     if (novoNome) {
-      localStorage.setItem('usuario', JSON.stringify({ ...usuario, nome_usuario: novoNome }));
+      localStorage.setItem('usuario', JSON.stringify({ usuario, nome_usuario: novoNome }));
     }
 
     location.reload();
